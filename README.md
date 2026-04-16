@@ -1,6 +1,6 @@
 # K-O11y
 
-[한국어](README.ko.md)
+[English](README.md) | [한국어](README.ko.md)
 
 A self-hosted Kubernetes observability platform with metrics, logs, traces, and ServiceMap visualization.
 
