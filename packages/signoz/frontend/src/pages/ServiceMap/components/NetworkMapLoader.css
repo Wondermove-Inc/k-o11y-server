@@ -1,0 +1,132 @@
+/* NetworkMap 전용 로더 스타일 */
+.network-map-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* Dark Mode */
+.network-map-loader.dark {
+  background: rgba(11, 12, 14, 0.95);
+}
+
+.network-map-loader.dark .network-map-loader-content {
+  background: #0b0c0e;
+  border: 1px solid rgba(238, 238, 238, 0.10);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.network-map-loader.dark .network-map-loader-spinner {
+  border: 4px solid rgba(238, 238, 238, 0.1);
+  border-top: 4px solid #4fd1c7;
+}
+
+.network-map-loader.dark .network-map-loader-message {
+  color: #ffffff;
+}
+
+.network-map-loader.dark .network-map-loader-sub-text {
+  color: #a0aec0;
+}
+
+/* Light Mode */
+.network-map-loader.light {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.network-map-loader.light .network-map-loader-content {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.network-map-loader.light .network-map-loader-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #538BFF; /* SigNoz primary blue */
+}
+
+.network-map-loader.light .network-map-loader-message {
+  color: #1a1a1a;
+}
+
+.network-map-loader.light .network-map-loader-sub-text {
+  color: #666666;
+}
+
+/* Common Styles */
+.network-map-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 40px;
+  border-radius: 16px;
+  min-width: 320px;
+  text-align: center;
+}
+
+.network-map-loader-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.network-map-loader-message {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.network-map-loader-sub-text {
+  font-size: 14px;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .network-map-loader-content {
+    padding: 32px 24px;
+    min-width: 280px;
+    gap: 20px;
+  }
+  
+  .network-map-loader-message {
+    font-size: 15px;
+  }
+  
+  .network-map-loader-sub-text {
+    font-size: 13px;
+  }
+}
+
+/* 애니메이션 효과 */
+.network-map-loader-content {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

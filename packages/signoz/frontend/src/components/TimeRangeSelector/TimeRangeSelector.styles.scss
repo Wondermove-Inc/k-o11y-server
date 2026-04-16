@@ -1,0 +1,873 @@
+/**
+ * TimeRangeSelector Component Styles
+ *
+ * TopNav용 Time Range Selector (ServiceMap CustomTimeRange와 동일한 UI)
+ * - Dark/Light 모드 지원
+ * - Preset 옵션, Custom Time Range, Timezone 선택
+ */
+
+/* ===== Popover 컨테이너 ===== */
+.time-range-selector-popover {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  min-width: 500px;
+  max-width: 520px;
+}
+
+body.lightMode .time-range-selector-popover {
+  background: #ffffff;
+}
+
+/* ===== 패널 컨텐츠 ===== */
+.trs-panel-content {
+  display: flex;
+  min-height: 252px;
+}
+
+/* ===== 왼쪽 섹션 (Preset 옵션) ===== */
+.trs-left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 224px;
+  flex-shrink: 0;
+}
+
+.trs-preset-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.trs-preset-option {
+  width: 100%;
+  height: 32px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+body.lightMode .trs-preset-option {
+  color: #000000;
+}
+
+.trs-preset-option:hover {
+  background: var(--bg-slate-400, #1d212d);
+}
+
+body.lightMode .trs-preset-option:hover {
+  background: #f5f5f5;
+}
+
+.trs-preset-option.selected {
+  background: rgba(255, 255, 255, 0.50);
+  color: #ffffff;
+  border-radius: 0;
+}
+
+body.lightMode .trs-preset-option.selected {
+  background: #e8e8e8;
+  border-radius: 0;
+  color: #000000;
+}
+
+/* Live 옵션 */
+.trs-preset-option.trs-live-option {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 44px;
+  padding: 13.5px 14px;
+}
+
+body.lightMode .trs-preset-option.trs-live-option {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ===== 구분선 ===== */
+.trs-section-divider {
+  width: 1px;
+  background: var(--bg-slate-400, #1d212d);
+  flex-shrink: 0;
+}
+
+body.lightMode .trs-section-divider {
+  background: #d0d0d0;
+}
+
+/* ===== 오른쪽 섹션 (Custom Time Range) ===== */
+.trs-right-section {
+  flex: 1;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  max-width: 280px;
+}
+
+.trs-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  padding-bottom: 8px;
+}
+
+body.lightMode .trs-section-title {
+  color: #000000;
+}
+
+.trs-custom-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.trs-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 247px;
+}
+
+.trs-input-group label {
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+body.lightMode .trs-input-group label {
+  color: #718096;
+}
+
+.trs-input-with-icon {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.trs-custom-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+
+body.lightMode .trs-custom-input-wrapper {
+  background: #f5f5f5;
+  border: 1px solid #d0d0d0;
+}
+
+.trs-custom-input-wrapper:focus-within {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+body.lightMode .trs-custom-input-wrapper:focus-within {
+  border-color: #4299e1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.trs-time-input {
+  padding: 8px 32px 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  width: 100%;
+  min-height: 36px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body.lightMode .trs-time-input {
+  background: transparent;
+  color: #000000;
+}
+
+.trs-time-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+}
+
+body.lightMode .trs-time-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== 시계 아이콘 ===== */
+.trs-clock-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+body:not(.lightMode) .trs-clock-icon {
+  filter: brightness(0) invert(1);
+}
+
+.trs-custom-input-wrapper:hover .trs-clock-icon {
+  opacity: 1;
+}
+
+/* ===== 유효성 검증 에러 ===== */
+.trs-validation-error {
+  color: #f56565;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ===== Apply 버튼 ===== */
+.trs-apply-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #125AED;
+  color: #ffffffe9;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: auto;
+  margin-left: auto;
+  width: 94px;
+}
+
+body.lightMode .trs-apply-button {
+  background: #125AED;
+  color: #ffffff;
+}
+
+.trs-apply-button:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+body.lightMode .trs-apply-button:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.trs-apply-button:disabled {
+  background: var(--Ink-200, #23262e);
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+body.lightMode .trs-apply-button:disabled {
+  background: #e2e8f0;
+  color: #a0aec0;
+}
+
+/* ===== Timezone 섹션 ===== */
+.trs-timezone-section {
+  position: relative;
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .trs-timezone-section {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+.trs-timezone-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+}
+
+body.lightMode .trs-timezone-label {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.trs-timezone-selector-button {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  background: #20232b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.trs-timezone-selector-button:hover {
+  background: #252a33;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.trs-timezone-selector-button.open {
+  border-color: #2f6bff;
+  box-shadow: 0 0 0 2px rgba(47, 107, 255, 0.2);
+}
+
+body.lightMode .trs-timezone-selector-button {
+  background: #f5f5f5;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #000000;
+}
+
+body.lightMode .trs-timezone-selector-button:hover {
+  background: #ededed;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.lightMode .trs-timezone-selector-button.open {
+  border-color: #2f6bff;
+  box-shadow: 0 0 0 2px rgba(47, 107, 255, 0.15);
+}
+
+.trs-timezone-display {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trs-timezone-dropdown-icon {
+  font-size: 10px;
+  opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.trs-timezone-selector-button.open .trs-timezone-dropdown-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ===== Timezone 드롭다운 ===== */
+.trs-timezone-dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  right: 0;
+  background: #1c1f27;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+body.lightMode .trs-timezone-dropdown {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.trs-timezone-search {
+  position: relative;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.lightMode .trs-timezone-search {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.trs-timezone-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+body.lightMode .trs-timezone-search-icon {
+  filter: none;
+  opacity: 0.6;
+}
+
+.trs-timezone-search-input {
+  width: 100%;
+  height: 32px;
+  padding: 0 12px 0 34px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.trs-timezone-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.trs-timezone-search-input:focus {
+  outline: none;
+  border-color: #2f6bff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .trs-timezone-search-input {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+body.lightMode .trs-timezone-search-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+body.lightMode .trs-timezone-search-input:focus {
+  border-color: #2f6bff;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.trs-timezone-list {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+}
+
+.trs-timezone-item {
+  width: 100%;
+  height: 34px;
+  padding: 0 12px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.trs-timezone-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.trs-timezone-item.selected {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.trs-timezone-item.selected:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.lightMode .trs-timezone-item {
+  color: #000000;
+}
+
+body.lightMode .trs-timezone-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .trs-timezone-item.selected {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000000;
+}
+
+body.lightMode .trs-timezone-item.selected:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.trs-timezone-item-check {
+  width: 16px;
+  flex-shrink: 0;
+  font-weight: 600;
+  order: 2;
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.lightMode .trs-timezone-item-check {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.trs-timezone-item-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== react-datepicker 커스텀 스타일 ===== */
+.custom-datepicker-popper {
+  z-index: 1001;
+}
+
+.custom-datepicker-calendar {
+  background: rgba(23, 28, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: inherit;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 370px !important;
+  min-width: 370px !important;
+  overflow: visible !important;
+  backdrop-filter: blur(2px);
+  height: 250px;
+}
+
+body.lightMode .custom-datepicker-calendar {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__header {
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 8px 0 0 0;
+  color: #ffffff;
+  padding-bottom: 12px;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__header {
+  background: #f5f5f5;
+  border-bottom: 1px solid #d0d0d0;
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__current-month {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__current-month {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__day-name {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day-name {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.custom-datepicker-calendar .react-datepicker__day {
+  color: #ffffff;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__day:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.custom-datepicker-calendar .react-datepicker__day--selected {
+  background: rgba(255, 255, 255, 0.50);
+  color: #ffffff;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day--selected {
+  background: #4299e1;
+  color: #ffffff;
+}
+
+.custom-datepicker-calendar .react-datepicker__day--keyboard-selected {
+  background: rgba(18, 90, 237, 0.7);
+  color: #ffffff;
+}
+
+.custom-datepicker-calendar .react-datepicker__navigation {
+  border: none;
+  top: 7px !important;
+}
+
+.react-datepicker__day-names {
+  top: 4px;
+  position: relative;
+}
+
+.custom-datepicker-calendar .react-datepicker__navigation--previous {
+  border-right-color: rgba(255, 255, 255, 0.7);
+}
+
+.custom-datepicker-calendar .react-datepicker__navigation--next {
+  border-left-color: rgba(255, 255, 255, 0.7);
+}
+
+.custom-datepicker-calendar .react-datepicker__month-container {
+  width: 280px;
+  flex-shrink: 0;
+  border-radius: 8px 0 0 8px;
+  background: rgb(24 28 39 / 92%);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-container {
+  background: #ffffff;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-container {
+  border-left: 1px solid rgba(255, 255, 255, 0.20);
+  background: rgb(24 28 39 / 92%);
+  width: 89px;
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-container {
+  border-left: 1px solid #d0d0d0;
+  background: #ffffff;
+  border-radius: 0px 8px 8px 0px;
+}
+
+body.darkMode .custom-datepicker-calendar .react-datepicker__time-container {
+  border-radius: 0px 8px 8px 0px;
+}
+
+.custom-datepicker-calendar .react-datepicker__header--time {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.20) !important;
+  padding: 12px 0 12px 0 !important;
+  margin: 0 !important;
+  height: 70px;
+  max-height: 70px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0px 8px 0px 0px;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__header--time {
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #d0d0d0 !important;
+  border-right: 1px solid #d0d0d0 !important;
+  height: 70px;
+  max-height: 70px;
+}
+
+body.darkMode .custom-datepicker-calendar .react-datepicker__header--time {
+  height: 70px;
+  max-height: 70px;
+}
+
+.custom-datepicker-calendar .react-datepicker__time {
+  background: transparent;
+  border-radius: 0 0 8px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-datepicker-calendar .react-datepicker__time .react-datepicker__time-box {
+  width: 100%;
+  flex: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time .react-datepicker__time-box {
+  border-right: 1px solid #d0d0d0 !important;
+}
+
+.custom-datepicker-calendar .react-datepicker-time__header,
+.custom-datepicker-calendar .react-datepicker__time-name {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  padding: 12px 0 12px 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker-time__header,
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-name {
+  color: #000000 !important;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list {
+  max-height: 172px !important;
+  height: 172px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  padding: 0;
+  padding-top: 5px;
+  margin: 0;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.4);
+  border-radius: 3px;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 136, 136, 0.7);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list {
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list-item,
+.custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  color: #ffffff;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list-item,
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list-item:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list-item--selected,
+.custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background: rgba(255, 255, 255, 0.50) !important;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list-item--selected,
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background: #4299e1 !important;
+  color: #ffffff !important;
+}
+
+.custom-datepicker-calendar .react-datepicker__header__dropdown {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__header__dropdown {
+  background: #f5f5f5;
+}
+
+.custom-datepicker-calendar .react-datepicker__year-dropdown,
+.custom-datepicker-calendar .react-datepicker__month-dropdown {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: #ffffff;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__year-dropdown,
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-dropdown {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__year-option,
+.custom-datepicker-calendar .react-datepicker__month-option {
+  color: #ffffff;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__year-option,
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-option {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__year-option:hover,
+.custom-datepicker-calendar .react-datepicker__month-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__year-option:hover,
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-option:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .time-range-selector-popover {
+    flex-direction: column;
+    min-width: 320px;
+  }
+
+  .preset-options-section {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  body.lightMode .preset-options-section {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .section-divider {
+    display: none;
+  }
+
+  .time-content-section {
+    min-width: auto;
+  }
+}

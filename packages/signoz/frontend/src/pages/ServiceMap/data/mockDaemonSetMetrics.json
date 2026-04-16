@@ -1,0 +1,376 @@
+{
+  "cpuUsage": {
+    "status": "success",
+    "data": {
+      "resultType": "",
+      "result": [
+        {
+          "queryName": "A",
+          "series": [
+            {
+              "labels": {},
+              "labelsArray": null,
+              "values": [
+                { "timestamp": 1757054820000, "value": "0.0774495525" },
+                { "timestamp": 1757054880000, "value": "0.080470595" },
+                { "timestamp": 1757054940000, "value": "0.07907900450000001" },
+                { "timestamp": 1757055000000, "value": "0.0779265225" },
+                { "timestamp": 1757055060000, "value": "0.0776024085" },
+                { "timestamp": 1757055120000, "value": "0.0808353785" },
+                { "timestamp": 1757055180000, "value": "0.07914800749999999" },
+                { "timestamp": 1757055240000, "value": "0.0808635795" },
+                { "timestamp": 1757055300000, "value": "0.07984132950000002" },
+                { "timestamp": 1757055360000, "value": "0.07853263599999999" },
+                { "timestamp": 1757055420000, "value": "0.0755492775" },
+                { "timestamp": 1757055480000, "value": "0.078009489" },
+                { "timestamp": 1757055540000, "value": "0.07189628299999999" },
+                { "timestamp": 1757055600000, "value": "0.0786323555" },
+                { "timestamp": 1757055660000, "value": "0.079258678" },
+                { "timestamp": 1757055720000, "value": "0.08994689" },
+                { "timestamp": 1757055780000, "value": "0.08177274799999999" },
+                { "timestamp": 1757055840000, "value": "0.086401531" },
+                { "timestamp": 1757055900000, "value": "0.086021707" },
+                { "timestamp": 1757055960000, "value": "0.082088371" },
+                { "timestamp": 1757056020000, "value": "0.08488046099999999" },
+                { "timestamp": 1757056080000, "value": "0.082449754" },
+                { "timestamp": 1757056140000, "value": "0.0800675265" },
+                { "timestamp": 1757056200000, "value": "0.0788178275" },
+                { "timestamp": 1757056260000, "value": "0.07849724150000001" },
+                { "timestamp": 1757056320000, "value": "0.0774491465" },
+                { "timestamp": 1757056380000, "value": "0.081335818" },
+                { "timestamp": 1757056440000, "value": "0.07998142" },
+                { "timestamp": 1757056500000, "value": "0.079942284" }
+              ]
+            }
+          ]
+        },
+        {
+          "queryName": "B",
+          "series": [
+            {
+              "labels": {},
+              "labelsArray": null,
+              "values": [
+                { "timestamp": 1757054820000, "value": "0.4" },
+                { "timestamp": 1757054880000, "value": "0.4" },
+                { "timestamp": 1757054940000, "value": "0.4" },
+                { "timestamp": 1757055000000, "value": "0.4" },
+                { "timestamp": 1757055060000, "value": "0.4" },
+                { "timestamp": 1757055120000, "value": "0.4" },
+                { "timestamp": 1757055180000, "value": "0.4" },
+                { "timestamp": 1757055240000, "value": "0.4" },
+                { "timestamp": 1757055300000, "value": "0.4" },
+                { "timestamp": 1757055360000, "value": "0.4" },
+                { "timestamp": 1757055420000, "value": "0.4" },
+                { "timestamp": 1757055480000, "value": "0.4" },
+                { "timestamp": 1757055540000, "value": "0.4" },
+                { "timestamp": 1757055600000, "value": "0.4" },
+                { "timestamp": 1757055660000, "value": "0.4" },
+                { "timestamp": 1757055720000, "value": "0.4" },
+                { "timestamp": 1757055780000, "value": "0.4" },
+                { "timestamp": 1757055840000, "value": "0.4" },
+                { "timestamp": 1757055900000, "value": "0.4" },
+                { "timestamp": 1757055960000, "value": "0.4" },
+                { "timestamp": 1757056020000, "value": "0.4" },
+                { "timestamp": 1757056080000, "value": "0.4" },
+                { "timestamp": 1757056140000, "value": "0.4" },
+                { "timestamp": 1757056200000, "value": "0.4" },
+                { "timestamp": 1757056260000, "value": "0.4" },
+                { "timestamp": 1757056320000, "value": "0.4" },
+                { "timestamp": 1757056380000, "value": "0.4" },
+                { "timestamp": 1757056440000, "value": "0.4" },
+                { "timestamp": 1757056500000, "value": "0.4" }
+              ]
+            }
+          ]
+        },
+        {
+          "queryName": "C",
+          "series": []
+        }
+      ]
+    }
+  },
+  "memoryUsage": {
+    "status": "success",
+    "data": {
+      "resultType": "",
+      "result": [
+        {
+          "queryName": "A",
+          "series": [
+            {
+              "labels": {},
+              "labelsArray": null,
+              "values": [
+                { "timestamp": 1757054820000, "value": "633151488" },
+                { "timestamp": 1757054880000, "value": "630165504" },
+                { "timestamp": 1757054940000, "value": "623341568" },
+                { "timestamp": 1757055000000, "value": "611139584" },
+                { "timestamp": 1757055060000, "value": "613513216" },
+                { "timestamp": 1757055120000, "value": "636901376" },
+                { "timestamp": 1757055180000, "value": "628279296" },
+                { "timestamp": 1757055240000, "value": "633126912" },
+                { "timestamp": 1757055300000, "value": "638394368" },
+                { "timestamp": 1757055360000, "value": "633133056" },
+                { "timestamp": 1757055420000, "value": "629987328" },
+                { "timestamp": 1757055480000, "value": "624173056" },
+                { "timestamp": 1757055540000, "value": "635277312" },
+                { "timestamp": 1757055600000, "value": "630102016" },
+                { "timestamp": 1757055660000, "value": "627253248" },
+                { "timestamp": 1757055720000, "value": "644898816" },
+                { "timestamp": 1757055780000, "value": "636063744" },
+                { "timestamp": 1757055840000, "value": "629551104" },
+                { "timestamp": 1757055900000, "value": "645437440" },
+                { "timestamp": 1757055960000, "value": "638892032" },
+                { "timestamp": 1757056020000, "value": "634169344" },
+                { "timestamp": 1757056080000, "value": "639490048" },
+                { "timestamp": 1757056140000, "value": "640745472" },
+                { "timestamp": 1757056200000, "value": "640532480" },
+                { "timestamp": 1757056260000, "value": "638365696" },
+                { "timestamp": 1757056320000, "value": "634714112" },
+                { "timestamp": 1757056380000, "value": "644900864" },
+                { "timestamp": 1757056440000, "value": "628727808" },
+                { "timestamp": 1757056500000, "value": "626135040" }
+              ]
+            }
+          ]
+        },
+        {
+          "queryName": "B",
+          "series": [
+            {
+              "labels": {},
+              "labelsArray": null,
+              "values": [
+                { "timestamp": 1757054820000, "value": "419430400" },
+                { "timestamp": 1757054880000, "value": "419430400" },
+                { "timestamp": 1757054940000, "value": "419430400" },
+                { "timestamp": 1757055000000, "value": "419430400" },
+                { "timestamp": 1757055060000, "value": "419430400" },
+                { "timestamp": 1757055120000, "value": "419430400" },
+                { "timestamp": 1757055180000, "value": "419430400" },
+                { "timestamp": 1757055240000, "value": "419430400" },
+                { "timestamp": 1757055300000, "value": "419430400" },
+                { "timestamp": 1757055360000, "value": "419430400" },
+                { "timestamp": 1757055420000, "value": "419430400" },
+                { "timestamp": 1757055480000, "value": "419430400" },
+                { "timestamp": 1757055540000, "value": "419430400" },
+                { "timestamp": 1757055600000, "value": "419430400" },
+                { "timestamp": 1757055660000, "value": "419430400" },
+                { "timestamp": 1757055720000, "value": "419430400" },
+                { "timestamp": 1757055780000, "value": "419430400" },
+                { "timestamp": 1757055840000, "value": "419430400" },
+                { "timestamp": 1757055900000, "value": "419430400" },
+                { "timestamp": 1757055960000, "value": "419430400" },
+                { "timestamp": 1757056020000, "value": "419430400" },
+                { "timestamp": 1757056080000, "value": "419430400" },
+                { "timestamp": 1757056140000, "value": "419430400" },
+                { "timestamp": 1757056200000, "value": "419430400" },
+                { "timestamp": 1757056260000, "value": "419430400" },
+                { "timestamp": 1757056320000, "value": "419430400" },
+                { "timestamp": 1757056380000, "value": "419430400" },
+                { "timestamp": 1757056440000, "value": "419430400" },
+                { "timestamp": 1757056500000, "value": "419430400" }
+              ]
+            }
+          ]
+        },
+        {
+          "queryName": "C",
+          "series": []
+        }
+      ]
+    }
+  },
+  "networkIO": {
+    "status": "success",
+    "data": {
+      "resultType": "",
+      "result": [
+        {
+          "queryName": "A",
+          "series": [
+            {
+              "labels": {
+                "direction": "receive",
+                "interface": "eth0"
+              },
+              "labelsArray": [
+                { "direction": "receive" },
+                { "interface": "eth0" }
+              ],
+              "values": [
+                { "timestamp": 1757054820000, "value": "233589.86666666667" },
+                { "timestamp": 1757054880000, "value": "200006.86666666667" },
+                { "timestamp": 1757054940000, "value": "226987.8" },
+                { "timestamp": 1757055000000, "value": "214876.01666666666" },
+                { "timestamp": 1757055060000, "value": "257631.2" },
+                { "timestamp": 1757055120000, "value": "226149.4166666667" },
+                { "timestamp": 1757055180000, "value": "200862.31666666668" },
+                { "timestamp": 1757055240000, "value": "221999.46666666667" },
+                { "timestamp": 1757055300000, "value": "251590.68333333335" },
+                { "timestamp": 1757055360000, "value": "231854.2" },
+                { "timestamp": 1757055420000, "value": "213881.5" },
+                { "timestamp": 1757055480000, "value": "242308.94999999998" },
+                { "timestamp": 1757055540000, "value": "214694.15000000002" },
+                { "timestamp": 1757055600000, "value": "219851.38333333333" },
+                { "timestamp": 1757055660000, "value": "243490.76666666666" },
+                { "timestamp": 1757055720000, "value": "234168.33333333337" },
+                { "timestamp": 1757055780000, "value": "234188.11666666667" },
+                { "timestamp": 1757055840000, "value": "232877.56666666665" },
+                { "timestamp": 1757055900000, "value": "265478.89999999997" },
+                { "timestamp": 1757055960000, "value": "216421.71666666667" },
+                { "timestamp": 1757056020000, "value": "246295.9" },
+                { "timestamp": 1757056080000, "value": "250604.25" },
+                { "timestamp": 1757056140000, "value": "221362.45" },
+                { "timestamp": 1757056200000, "value": "242528.53333333333" },
+                { "timestamp": 1757056260000, "value": "249611.6166666667" },
+                { "timestamp": 1757056320000, "value": "235377.30000000002" },
+                { "timestamp": 1757056380000, "value": "218279.58333333334" },
+                { "timestamp": 1757056440000, "value": "244830.4166666667" },
+                { "timestamp": 1757056500000, "value": "249442.98333333334" }
+              ]
+            },
+            {
+              "labels": {
+                "direction": "transmit",
+                "interface": "eth0"
+              },
+              "labelsArray": [
+                { "direction": "transmit" },
+                { "interface": "eth0" }
+              ],
+              "values": [
+                { "timestamp": 1757054820000, "value": "49340.23333333334" },
+                { "timestamp": 1757054880000, "value": "41931.083333333336" },
+                { "timestamp": 1757054940000, "value": "47908.8" },
+                { "timestamp": 1757055000000, "value": "44301.73333333333" },
+                { "timestamp": 1757055060000, "value": "53501.48333333334" },
+                { "timestamp": 1757055120000, "value": "47464.03333333333" },
+                { "timestamp": 1757055180000, "value": "42066.183333333334" },
+                { "timestamp": 1757055240000, "value": "44794.51666666666" },
+                { "timestamp": 1757055300000, "value": "53544.7" },
+                { "timestamp": 1757055360000, "value": "47992.149999999994" },
+                { "timestamp": 1757055420000, "value": "45554.35" },
+                { "timestamp": 1757055480000, "value": "49291.65" },
+                { "timestamp": 1757055540000, "value": "43258.71666666667" },
+                { "timestamp": 1757055600000, "value": "44417.78333333333" },
+                { "timestamp": 1757055660000, "value": "52487.8" },
+                { "timestamp": 1757055720000, "value": "53315.1" },
+                { "timestamp": 1757055780000, "value": "55831.83333333333" },
+                { "timestamp": 1757055840000, "value": "57189.41666666667" },
+                { "timestamp": 1757055900000, "value": "62176.86666666667" },
+                { "timestamp": 1757055960000, "value": "52057.049999999996" },
+                { "timestamp": 1757056020000, "value": "54321.583333333336" },
+                { "timestamp": 1757056080000, "value": "57666.86666666667" },
+                { "timestamp": 1757056140000, "value": "54494.916666666664" },
+                { "timestamp": 1757056200000, "value": "55725.049999999996" },
+                { "timestamp": 1757056260000, "value": "58569.91666666667" },
+                { "timestamp": 1757056320000, "value": "56987.38333333334" },
+                { "timestamp": 1757056380000, "value": "49696.299999999996" },
+                { "timestamp": 1757056440000, "value": "59183.46666666667" },
+                { "timestamp": 1757056500000, "value": "58417.549999999996" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "networkErrors": {
+    "status": "success",
+    "data": {
+      "resultType": "",
+      "result": [
+        {
+          "queryName": "A",
+          "series": [
+            {
+              "labels": {
+                "direction": "receive",
+                "interface": "eth0"
+              },
+              "labelsArray": [
+                { "direction": "receive" },
+                { "interface": "eth0" }
+              ],
+              "values": [
+                { "timestamp": 1757054820000, "value": "0" },
+                { "timestamp": 1757054880000, "value": "0" },
+                { "timestamp": 1757054940000, "value": "0" },
+                { "timestamp": 1757055000000, "value": "0" },
+                { "timestamp": 1757055060000, "value": "0" },
+                { "timestamp": 1757055120000, "value": "0" },
+                { "timestamp": 1757055180000, "value": "0" },
+                { "timestamp": 1757055240000, "value": "0" },
+                { "timestamp": 1757055300000, "value": "0" },
+                { "timestamp": 1757055360000, "value": "0" },
+                { "timestamp": 1757055420000, "value": "0" },
+                { "timestamp": 1757055480000, "value": "0" },
+                { "timestamp": 1757055540000, "value": "0" },
+                { "timestamp": 1757055600000, "value": "0" },
+                { "timestamp": 1757055660000, "value": "0" },
+                { "timestamp": 1757055720000, "value": "0" },
+                { "timestamp": 1757055780000, "value": "0" },
+                { "timestamp": 1757055840000, "value": "0" },
+                { "timestamp": 1757055900000, "value": "0" },
+                { "timestamp": 1757055960000, "value": "0" },
+                { "timestamp": 1757056020000, "value": "0" },
+                { "timestamp": 1757056080000, "value": "0" },
+                { "timestamp": 1757056140000, "value": "0" },
+                { "timestamp": 1757056200000, "value": "0" },
+                { "timestamp": 1757056260000, "value": "0" },
+                { "timestamp": 1757056320000, "value": "0" },
+                { "timestamp": 1757056380000, "value": "0" },
+                { "timestamp": 1757056440000, "value": "0" },
+                { "timestamp": 1757056500000, "value": "0" }
+              ]
+            },
+            {
+              "labels": {
+                "direction": "transmit",
+                "interface": "eth0"
+              },
+              "labelsArray": [
+                { "direction": "transmit" },
+                { "interface": "eth0" }
+              ],
+              "values": [
+                { "timestamp": 1757054820000, "value": "0" },
+                { "timestamp": 1757054880000, "value": "0" },
+                { "timestamp": 1757054940000, "value": "0" },
+                { "timestamp": 1757055000000, "value": "0" },
+                { "timestamp": 1757055060000, "value": "0" },
+                { "timestamp": 1757055120000, "value": "0" },
+                { "timestamp": 1757055180000, "value": "0" },
+                { "timestamp": 1757055240000, "value": "0" },
+                { "timestamp": 1757055300000, "value": "0" },
+                { "timestamp": 1757055360000, "value": "0" },
+                { "timestamp": 1757055420000, "value": "0" },
+                { "timestamp": 1757055480000, "value": "0" },
+                { "timestamp": 1757055540000, "value": "0" },
+                { "timestamp": 1757055600000, "value": "0" },
+                { "timestamp": 1757055660000, "value": "0" },
+                { "timestamp": 1757055720000, "value": "0" },
+                { "timestamp": 1757055780000, "value": "0" },
+                { "timestamp": 1757055840000, "value": "0" },
+                { "timestamp": 1757055900000, "value": "0" },
+                { "timestamp": 1757055960000, "value": "0" },
+                { "timestamp": 1757056020000, "value": "0" },
+                { "timestamp": 1757056080000, "value": "0" },
+                { "timestamp": 1757056140000, "value": "0" },
+                { "timestamp": 1757056200000, "value": "0" },
+                { "timestamp": 1757056260000, "value": "0" },
+                { "timestamp": 1757056320000, "value": "0" },
+                { "timestamp": 1757056380000, "value": "0" },
+                { "timestamp": 1757056440000, "value": "0" },
+                { "timestamp": 1757056500000, "value": "0" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

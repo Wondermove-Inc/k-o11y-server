@@ -1,0 +1,112 @@
+/* fixed style */
+.helper-fixed-container {
+  position: absolute;
+  left: 167%;
+  bottom: 120%;
+  /* transform: translateX(-0%); */
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 5px 5px 20px rgba(20, 25, 35, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+  backdrop-filter: blur(15px);
+  z-index: 10000;
+  max-width: 240px;
+}
+/* 중간 말풍선 */
+
+.helper-box-center {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 5px 5px 20px rgba(20, 25, 35, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  text-align: center;
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+
+}
+
+.helper-triangle-center {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid rgba(255, 255, 255, 0.16);
+}
+
+.helper-content-center {
+  max-width: 240px;
+  white-space: pre-wrap;
+}
+
+.helper-box-left {
+  position: fixed;
+  margin-left: -34px;
+  /* max-width: 240px; */
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 5px 5px 20px rgba(20, 25, 35, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+}
+
+.helper-triangle-left {
+  position: absolute;
+  top: -9px;
+  left: 10%;
+  transform: translateX(-10%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid rgba(255, 255, 255, 0.16);
+}
+
+.helper-content-left {
+  max-width: 240px;
+  white-space: pre-wrap;
+}
+
+.helper-box-right {
+  display: flex;
+  position: fixed;
+  min-width: 126px;
+  max-width: 240px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 5px 5px 20px rgba(20, 25, 35, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(25px);
+  z-index: 1000;
+}
+
+.helper-triangle-right {
+  position: absolute;
+  top: -9px;
+  right: 10%;
+  transform: translateX(-10%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 8px solid rgba(255, 255, 255, 0.16);
+}
+
+.helper-content-right {
+  max-width: 240px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

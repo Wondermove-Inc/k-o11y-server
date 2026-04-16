@@ -1,0 +1,131 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.component-typography {
+  font-family: Pretendard Variable, sans-serif;
+  color: var(--text-ui-text);
+}
+
+body.lightMode .component-typography {
+  color: #000000;
+}
+
+.component-typography br {
+  display: block;
+  content: '';
+  margin-top: 12px;
+}
+
+.component-typography-code {
+  font-family: 'Roboto Mono';
+  color: var(--text-ui-text);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+body.lightMode .component-typography-code {
+  color: #000000;
+}
+.component-typography-h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+}
+.component-typography-h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+.component-typography-s1 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.component-typography-b1,
+.component-typography-b1-bold,
+.component-typography-b1-semi-bold,
+.component-typography-b1-medium,
+.component-typography-b1-regular {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.component-typography-b1-bold {
+  font-weight: 700;
+}
+.component-typography-b1-semi-bold {
+  font-weight: 600;
+}
+.component-typography-b1-medium {
+  font-weight: 500;
+}
+.component-typography-b1-regular {
+  font-weight: 400;
+}
+.component-typography-b1-thin {
+  font-weight: 300;
+}
+
+.component-typography-b2,
+.component-typography-b2-bold,
+.component-typography-b2-regular {
+  /* font-weight: 400; */
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.component-typography-b2-bold {
+  font-weight: 700;
+}
+.component-typography-b2-regular {
+  font-weight: 400;
+}
+
+.component-typography-label,
+.component-typography-label-bold,
+.component-typography-label-medium,
+.component-typography-label-regular {
+  /* font-weight: 400; */
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.component-typography-label-bold {
+  font-weight: 700;
+}
+.component-typography-label-medium {
+  font-weight: 500;
+}
+.component-typography-label-regular {
+  font-weight: 400;
+}
+
+.component-typography-link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  text-decoration-line: underline;
+  text-transform: capitalize;
+}
+
+.component-typography-link-lowercase {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  text-decoration-line: underline;
+  text-transform: lowercase;
+}
+
+.component-typography-link- {
+  text-decoration-line: none;
+}
+
+.component-typography-ellipsis {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}

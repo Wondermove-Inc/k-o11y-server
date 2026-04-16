@@ -1,0 +1,97 @@
+.login-form-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	align-items: flex-start;
+
+	.login-form-header {
+		margin-bottom: 16px;
+	}
+
+	.login-form-header-text {
+		color: var(--text-vanilla-300);
+	}
+
+	.next-btn {
+		padding: 0px 16px;
+	}
+
+	.login-form-input {
+		height: 40px;
+
+		// Remove browser autofill styles
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover,
+		input:-webkit-autofill:focus,
+		input:-webkit-autofill:active {
+			-webkit-box-shadow: 0 0 0 30px var(--bg-vanilla-100) inset !important;
+			transition: background-color 5000s ease-in-out 0s;
+		}
+
+		// Password field styling
+		&.ant-input-password {
+			// Default icon color (light)
+			.ant-input-password-icon {
+				color: var(--text-vanilla-400);
+			}
+
+			// Remove all shadows in all states
+			&,
+			&:hover,
+			&:focus,
+			&.ant-input-affix-wrapper-focused {
+				box-shadow: none !important;
+			}
+
+			// When focused - white background, dark icon and text
+			&.ant-input-affix-wrapper-focused {
+				background: var(--bg-vanilla-100);
+
+				input {
+					color: var(--text-ink-500);
+					background: var(--bg-vanilla-100);
+				}
+
+				.ant-input-password-icon {
+					color: var(--text-ink-500);
+				}
+			}
+
+			// When has value (using :has selector)
+			&:has(input:not(:placeholder-shown)) {
+				background: var(--bg-vanilla-100);
+
+				input {
+					color: var(--text-ink-500);
+					background: var(--bg-vanilla-100);
+				}
+
+				.ant-input-password-icon {
+					color: var(--text-ink-500);
+				}
+			}
+		}
+	}
+
+	.no-acccount {
+		color: var(--text-vanilla-300);
+		font-size: 12px;
+		margin-top: 16px;
+	}
+}
+
+.lightMode {
+	.login-form-container {
+		.login-form-header {
+			color: var(--text-ink-500);
+		}
+
+		.login-form-header-text {
+			color: var(--text-ink-500);
+		}
+
+		.no-acccount {
+			color: var(--text-ink-500);
+		}
+	}
+}

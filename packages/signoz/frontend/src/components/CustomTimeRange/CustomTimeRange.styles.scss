@@ -1,0 +1,883 @@
+/**
+ * CustomTimeRange Component Styles
+ *
+ * Time Range Picker 패널 스타일
+ * - Dark/Light 모드 지원
+ * - Preset 옵션 및 Custom Time Range 입력
+ * - Timezone 선택 UI
+ */
+
+/* ===== 컨테이너 ===== */
+.custom-time-range-container {
+  position: relative;
+}
+
+/* ===== 버튼 ===== */
+.time-range-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  min-width: 200px;
+  position: relative;
+}
+
+body.lightMode .time-range-button {
+  color: #000000;
+}
+
+.time-range-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+body.lightMode .time-range-label {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.time-range-divider {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+body.lightMode .time-range-divider {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.time-range-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.time-range-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.lightMode .time-range-text {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* ===== 패널 (Portal로 document.body에 렌더링) ===== */
+.time-range-panel {
+  /* position: fixed는 인라인 스타일로 동적 계산됨 */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 8px;
+  margin-top: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 10000;
+  width: 396px;
+  padding: 0;
+  backdrop-filter: blur(8px);
+}
+
+body.lightMode .time-range-panel {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== 패널 컨텐츠 ===== */
+.panel-content {
+  display: flex;
+  min-height: 252px;
+}
+
+/* ===== 왼쪽 섹션 (Preset 옵션) ===== */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1.2;
+  min-width: 125px;
+}
+
+.preset-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.preset-option {
+  width: 100%;
+  height: 32px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+body.lightMode .preset-option {
+  color: #000000;
+}
+
+.preset-option:hover {
+  background: var(--bg-slate-400, #1d212d);
+}
+
+body.lightMode .preset-option:hover {
+  background: #f5f5f5;
+}
+
+.preset-option.selected {
+  background: rgba(255, 255, 255, 0.50);
+  color: #ffffff;
+  border-radius: 0;
+}
+
+body.lightMode .preset-option.selected {
+  background: #e8e8e8;
+  border-radius: 0;
+  color: #000000;
+}
+
+/* ===== 구분선 ===== */
+.section-divider {
+  width: 1px;
+  background: var(--bg-slate-400, #1d212d);
+  flex-shrink: 0;
+}
+
+body.lightMode .section-divider {
+  background: #d0d0d0;
+}
+
+/* ===== 오른쪽 섹션 (Custom Time Range) ===== */
+.right-section {
+  flex: 1.5;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  padding-bottom: 8px;
+}
+
+body.lightMode .section-title {
+  color: #000000;
+}
+
+.custom-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+body.lightMode .input-group label {
+  color: #718096;
+}
+
+.input-with-icon {
+  position: relative;
+  display: block;
+  width: 245px;
+  max-width: 245px;
+}
+
+.time-input {
+  padding: 8px 48px 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  width: 245px !important;
+  max-width: 245px !important;
+  height: 37px !important;
+  min-height: 37px !important;
+  box-sizing: border-box;
+}
+
+body.lightMode .time-input {
+  background: #f5f5f5;
+  color: #000000;
+  border: 1px solid #d0d0d0;
+}
+
+.time-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+body.lightMode .time-input:focus {
+  border-color: #4299e1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+.time-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+body.lightMode .time-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== 시계 아이콘 ===== */
+.clock-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.input-with-icon:hover .clock-icon {
+  opacity: 1;
+}
+
+.input-with-icon .time-input {
+  padding-right: 48px;
+  width: 245px !important;
+  max-width: 245px !important;
+  position: relative;
+  z-index: 1;
+}
+
+.input-with-icon .react-datepicker__input-container {
+  width: 245px !important;
+  max-width: 245px !important;
+}
+
+.input-with-icon .react-datepicker__input-container input {
+  width: 245px !important;
+  max-width: 245px !important;
+  height: 37px !important;
+  min-height: 37px !important;
+}
+
+/* ===== 유효성 검증 에러 ===== */
+.validation-error {
+  color: #f56565;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ===== Apply 버튼 ===== */
+.apply-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #125AED;
+  color: #ffffffe9;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: auto;
+  margin-left: auto;
+  width: 94px;
+}
+
+.apply-button:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.apply-button:disabled {
+  background: var(--Ink-200, #23262e);
+  color: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* ===== Timezone 섹션 ===== */
+.timezone-section {
+  position: relative;
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .timezone-section {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+.timezone-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+}
+
+body.lightMode .timezone-label {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.timezone-selector-button {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  background: #20232b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.timezone-selector-button:hover {
+  background: #252a33;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.timezone-selector-button.open {
+  border-color: #2f6bff;
+  box-shadow: 0 0 0 2px rgba(47, 107, 255, 0.2);
+}
+
+body.lightMode .timezone-selector-button {
+  background: #f5f5f5;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #000000;
+}
+
+body.lightMode .timezone-selector-button:hover {
+  background: #ededed;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.lightMode .timezone-selector-button.open {
+  border-color: #2f6bff;
+  box-shadow: 0 0 0 2px rgba(47, 107, 255, 0.15);
+}
+
+.timezone-display {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.timezone-dropdown-icon {
+  font-size: 10px;
+  opacity: 0.7;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.timezone-selector-button.open .timezone-dropdown-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ===== Timezone 드롭다운 ===== */
+.timezone-dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  right: 0;
+  background: #1c1f27;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 10002;
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+body.lightMode .timezone-dropdown {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.timezone-search {
+  position: relative;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.lightMode .timezone-search {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.timezone-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+body.lightMode .timezone-search-icon {
+  filter: none;
+  opacity: 0.6;
+}
+
+.timezone-search-input {
+  width: 100%;
+  height: 32px;
+  padding: 0 12px 0 34px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.timezone-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.timezone-search-input:focus {
+  outline: none;
+  border-color: #2f6bff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .timezone-search-input {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+body.lightMode .timezone-search-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+body.lightMode .timezone-search-input:focus {
+  border-color: #2f6bff;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.timezone-list {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+}
+
+.timezone-item {
+  width: 100%;
+  height: 34px;
+  padding: 0 12px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.timezone-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.timezone-item.selected {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.timezone-item.selected:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.lightMode .timezone-item {
+  color: #000000;
+}
+
+body.lightMode .timezone-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .timezone-item.selected {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000000;
+}
+
+body.lightMode .timezone-item.selected:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.timezone-item-check {
+  width: 16px;
+  flex-shrink: 0;
+  font-weight: 600;
+  order: 2;
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body.lightMode .timezone-item-check {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.timezone-item-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== react-datepicker 커스텀 스타일 ===== */
+.custom-datepicker-popper {
+  z-index: 10001;
+}
+
+.custom-datepicker-calendar {
+  background: rgba(23, 28, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: inherit;
+  display: flex !important;
+  flex-direction: row !important;
+  width: 370px !important;
+  min-width: 370px !important;
+  overflow: visible !important;
+  backdrop-filter: blur(2px);
+  height: 250px;
+}
+
+body.lightMode .custom-datepicker-calendar {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__header {
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 8px 0 0 0;
+  color: #ffffff;
+  padding-bottom: 12px;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__header {
+  background: #f5f5f5;
+  border-bottom: 1px solid #d0d0d0;
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__current-month {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__current-month {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__day-name {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day-name {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.custom-datepicker-calendar .react-datepicker__day {
+  color: #ffffff;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__day:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.custom-datepicker-calendar .react-datepicker__day--selected {
+  background: rgba(255, 255, 255, 0.50);
+  color: #ffffff;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__day--selected {
+  background: #4299e1;
+  color: #ffffff;
+}
+
+.custom-datepicker-calendar .react-datepicker__day--keyboard-selected {
+  background: rgba(18, 90, 237, 0.7);
+  color: #ffffff;
+}
+
+.custom-datepicker-calendar .react-datepicker__navigation {
+  border: none;
+  top: 7px !important;
+}
+
+.react-datepicker__day-names {
+  top: 4px;
+  position: relative;
+}
+
+.custom-datepicker-calendar .react-datepicker__navigation--previous {
+  border-right-color: rgba(255, 255, 255, 0.7);
+}
+
+.custom-datepicker-calendar .react-datepicker__navigation--next {
+  border-left-color: rgba(255, 255, 255, 0.7);
+}
+
+.custom-datepicker-calendar .react-datepicker__month-container {
+  width: 280px;
+  flex-shrink: 0;
+  border-radius: 8px 0 0 8px;
+  background: rgb(24 28 39 / 92%);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-container {
+  background: #ffffff;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-container {
+  border-left: 1px solid rgba(255, 255, 255, 0.20);
+  background: rgb(24 28 39 / 92%);
+  width: 89px;
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-container {
+  border-left: 1px solid #d0d0d0;
+  background: #ffffff;
+  border-radius: 0px 8px 8px 0px;
+}
+
+body.darkMode .custom-datepicker-calendar .react-datepicker__time-container {
+  border-radius: 0px 8px 8px 0px;
+}
+
+.custom-datepicker-calendar .react-datepicker__header--time {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.20) !important;
+  padding: 12px 0 12px 0 !important;
+  margin: 0 !important;
+  height: 68px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0px 8px 0px 0px;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__header--time {
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #d0d0d0 !important;
+  border-right: 1px solid #d0d0d0 !important;
+}
+
+.custom-datepicker-calendar .react-datepicker__time {
+  background: transparent;
+  border-radius: 0 0 8px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-datepicker-calendar .react-datepicker__time .react-datepicker__time-box {
+  width: 100%;
+  flex: 1;
+}
+
+.custom-datepicker-calendar .react-datepicker-time__header,
+.custom-datepicker-calendar .react-datepicker__time-name {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  padding: 12px 0 12px 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker-time__header,
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-name {
+  color: #000000 !important;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list {
+  max-height: 174px !important;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+  padding: 0;
+  padding-top: 5px;
+  margin: 0;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.4);
+  border-radius: 3px;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 136, 136, 0.7);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list {
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list-item,
+.custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  color: #ffffff;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list-item,
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list-item:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.custom-datepicker-calendar .react-datepicker__time-list-item--selected,
+.custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background: rgba(255, 255, 255, 0.50) !important;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-list-item--selected,
+body.lightMode .custom-datepicker-calendar .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background: #4299e1 !important;
+  color: #ffffff !important;
+}
+
+.custom-datepicker-calendar .react-datepicker__header__dropdown {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__header__dropdown {
+  background: #f5f5f5;
+}
+
+.custom-datepicker-calendar .react-datepicker__year-dropdown,
+.custom-datepicker-calendar .react-datepicker__month-dropdown {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: #ffffff;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__year-dropdown,
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-dropdown {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__year-option,
+.custom-datepicker-calendar .react-datepicker__month-option {
+  color: #ffffff;
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__year-option,
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-option {
+  color: #000000;
+}
+
+.custom-datepicker-calendar .react-datepicker__year-option:hover,
+.custom-datepicker-calendar .react-datepicker__month-option:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body.lightMode .custom-datepicker-calendar .react-datepicker__year-option:hover,
+body.lightMode .custom-datepicker-calendar .react-datepicker__month-option:hover {
+  background: rgba(0, 0, 0, 0.1);
+}

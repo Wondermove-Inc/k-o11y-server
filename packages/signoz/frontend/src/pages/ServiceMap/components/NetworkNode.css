@@ -1,0 +1,766 @@
+/* NetworkNode 스타일 - 190x70 크기로 설정 */
+.network-node {
+  width: 190px;
+  height: 70px;
+  padding: 0;
+  border: none; /* 기본 테두리 제거 - 선택시에만 표시 */
+  border-radius: 12px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.08));
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', 'Arial', sans-serif;
+  position: relative;
+  color: #374151;
+  overflow: hidden;
+}
+
+.network-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  z-index: -1;
+  background: #121317; /* 다크 모드 배경 */
+}
+
+body.lightMode .network-node::before {
+  background: #f5f5f5; /* 라이트 모드 배경 */
+}
+
+/* 상세 모드일 때 노드 높이 확장 */
+.network-node.advanced-mode {
+  height: 146px;
+}
+
+/* 새로운 2층 노드 구조 - 기본 모드: 세로 중앙, 상세 모드: 상단 배치 */
+.node-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 166px;
+  gap: 6px;
+}
+
+/* 상세 모드일 때 node-content를 상단으로 배치 */
+.network-node.advanced-mode .node-content {
+  top: 12px;
+  transform: none;
+  height: auto;
+}
+
+/* 워크로드 이름 (메인 텍스트) */
+.workload-name {
+  font-size: 11.2px;
+  font-weight: 600;
+  color: #ffffff; /* 다크 모드 */
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
+  margin: 0;
+}
+
+body.lightMode .workload-name {
+  color: #000000; /* 라이트 모드 */
+}
+
+/* 네임스페이스 박스 */
+.namespace-box {
+  display: inline-block;
+  background: rgba(65, 73, 84, 0.7);
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 9.4px;
+  font-weight: 500;
+  max-width: fit-content;
+  margin: 0;
+}
+
+body.lightMode .namespace-box {
+  background: rgba(65, 73, 84, 0.6);
+  color: #ffffff;
+}
+
+/* 상태 아이콘 컨테이너 (우측 상단) */
+.status-icon-container {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.status-icon-container.healthy::before {
+  content: '';
+  position: absolute;
+  top: -34px;
+  left: -30px;
+  width: 88px;
+  height: 100px;
+  background: radial-gradient(ellipse, rgba(0, 192, 42, 0.081) 0%, rgba(0, 192, 42, 0.064) 20%, rgba(0, 192, 42, 0.008) 60%, transparent 80%);
+  border-radius: 50%;
+  z-index: -2;
+}
+
+.status-icon-container.error::before {
+  content: '';
+  position: absolute;
+  top: -34px;
+  left: -30px;
+  width: 88px;
+  height: 100px;
+  background: radial-gradient(ellipse, rgba(235, 66, 54, 0.113) 0%, rgba(235, 66, 54, 0.081) 26%, rgba(235, 65, 54, 0.008) 60%, transparent 80%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.status-icon-container.external {
+  background: transparent;
+}
+
+/* SVG 상태 아이콘 */
+.status-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* External 노드의 지구본 아이콘만 색상 변경 */
+.network-node.external .status-icon {
+  filter: brightness(0) invert(1); /* Dark mode: 흰색으로 지구본 아이콘 표시 */
+}
+
+body.lightMode .network-node.external .status-icon {
+  filter: brightness(0) invert(0); /* Light mode: 검은색으로 지구본 아이콘 표시 */
+}
+
+/* 외부 서비스 아이콘 */
+.external-icon {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+/* 외부 서비스 스타일 */
+.network-node.external {
+  border-color: #9ca3af;
+  background: #f3f4f6;
+}
+
+.network-node.external .workload-name {
+  color: #ffffff; /* Dark mode: 흰색 텍스트 */
+}
+
+body.lightMode .network-node.external .workload-name {
+  color: #1f1f1f; /* Light mode: 검은색 텍스트 */
+}
+
+.network-node.external .namespace-box {
+  background: rgba(65, 73, 84, 0.7);
+  color: var(--colorText, #ffffff);
+}
+
+.network-node:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #9ca3af;
+}
+
+.network-node:hover::before {
+  background: linear-gradient(to top, #1e2329, #262d36);
+}
+
+.network-node:hover.Ok,
+.network-node:hover.OK,
+.network-node:hover.ok {
+  border-color: #00C02A;
+}
+
+.network-node:hover.Error,
+.network-node:hover.error {
+  border-color: #dc3545;
+}
+
+.network-node:hover.external {
+  border-color: #00C02A;
+}
+
+.network-node.connected-highlight {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #9ca3af;
+}
+
+.network-node.connected-highlight::before {
+  background: linear-gradient(to top, #1e2329, #262d36) !important;
+}
+
+.network-node.connected-highlight.Ok,
+.network-node.connected-highlight.OK,
+.network-node.connected-highlight.ok {
+  border-color: #00C02A;
+}
+
+.network-node.connected-highlight.Error,
+.network-node.connected-highlight.error {
+  border-color: #dc3545;
+  
+}
+
+.network-node.connected-highlight.external {
+  border-color: #00C02A;
+}
+
+/* 노드 선택 시 상태별 테두리 스타일 */
+.network-node.selected {
+  border-width: 2.5px;
+  border-style: solid;
+}
+
+/* 정상 노드 선택 시 초록색 테두리 */
+.network-node.selected.Ok,
+.network-node.selected.OK,
+.network-node.selected.ok {
+  border-color: #00C02A;
+  box-shadow: none;
+}
+
+/* 에러 노드 선택 시 빨간색 테두리 */
+.network-node.selected.Error,
+.network-node.selected.error {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+
+/* 외부 서비스는 기본 상태로 처리 (정상으로 간주) */
+.network-node.selected.external {
+  border-color: #00C02A;
+  box-shadow: none;
+}
+
+/* 기존 스타일들 - 새 구조에서 제거됨 */
+/* .node-header, .service-name, .namespace 등은 새로운 구조로 대체됨 */
+
+/* 상세 모드 메트릭 컨테이너 */
+.advanced-metrics-container {
+  position: absolute;
+  top: 68px; /* 노드 높이(156px)의 중간 지점 */
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 회색 구분선 - 노드를 상하로 나누는 중앙선 */
+.metrics-divider {
+  width: 170px;
+  height: 1px;
+  background-color: #6b7280;
+  opacity: 0.4;
+  margin: 0 auto 16px auto;
+}
+
+/* 메트릭 정보 */
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 12px 8px 12px;
+}
+
+.metric-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 9.4px;
+  gap: 12px;
+}
+
+.metric-label {
+  color: #a0aec0;
+  font-weight: 500;
+  font-size: 9.4px;
+  text-transform: none !important; /* 대문자 변환 제거 - 다른 CSS 우선순위 무시 */
+  min-width: 80px; /* 라벨 최소 너비 고정으로 값들을 일정한 위치에 정렬 */
+}
+
+.metric-value {
+  color: var(--colorText, #ffffff);
+  font-weight: bold;
+  font-size: 9.4px;
+}
+
+.metric-item.error .metric-value {
+  color: #dc3545;
+}
+
+/* 상태 표시 */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.running {
+  background-color: #00C02A;
+}
+
+.status-dot.pending {
+  background-color: #ffc107;
+}
+
+.status-dot.failed {
+  background-color: #dc3545;
+}
+
+.status-dot.unknown {
+  background-color: #6c757d;
+}
+
+.status-text {
+  font-size: 10px;
+  color: #666;
+  text-transform: capitalize;
+}
+
+/* React Flow Handle 호버시에만 숨김 - 기본 연결 포인트는 유지 */
+.react-flow__handle {
+  opacity: 0; /* 평상시 투명 */
+  width: 8px;
+  height: 8px;
+  border: 2px solid #ffffff;
+  background: #4a5568;
+  transition: opacity 0.2s ease;
+}
+
+/* 노드 호버시에도 handle 숨김 유지 */
+.network-node:hover .react-flow__handle {
+  opacity: 0;
+}
+
+/* 호버 툴팁 스타일 */
+.hover-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  min-width: 200px;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  margin-top: 8px;
+  pointer-events: none; /* 마우스 이벤트 무시 */
+}
+
+.hover-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(0, 0, 0, 0.9);
+}
+
+.tooltip-section {
+  margin-bottom: 12px;
+}
+
+.tooltip-section:last-child {
+  margin-bottom: 0;
+}
+
+.tooltip-section h4 {
+  margin: 0 0 6px 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffc107;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.tooltip-section div {
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+.tooltip-section div:last-child {
+  margin-bottom: 0;
+}
+
+.connected-info {
+  color: #ccc;
+  font-style: italic;
+}
+
+/* 상대 노드 Top5 툴팁 - 0007.png 스타일 */
+.top-connections-tooltip {
+  position: absolute;
+  top: -20px;
+  left: 120%;
+  z-index: 1000;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  min-width: 280px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.top-connections-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -6px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #2d3748;
+}
+
+.tooltip-header {
+  padding: 8px 12px 6px 12px; /* 빈공간 줄임 */
+  border-bottom: 1px solid #4a5568;
+}
+
+.tooltip-header h4 {
+  margin: 0;
+  font-size: 12px; /* 폰트 크기 줄임 */
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.connections-list {
+  padding: 4px 0; /* 빈공간 줄임 */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* 상세 모드 컬럼 헤더 */
+.connection-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 8px;
+  border-bottom: 1px solid #4a5568;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 9.4px;
+  color: #a0aec0;
+  /* text-transform: uppercase; */
+}
+
+.header-rank {
+  min-width: 18px;
+}
+
+.header-name {
+  flex: 1;
+}
+
+.header-metric {
+  min-width: 40px;
+  text-align: right;
+}
+
+.connection-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px; /* 빈공간 줄임 */
+  gap: 8px; /* 간격 줄임 */
+  transition: background 0.2s ease;
+}
+
+.connection-item:hover {
+  background: #4a5568;
+}
+
+.rank {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a0aec0;
+  min-width: 18px; /* 폭 줄임 */
+}
+
+.connection-item .service-name {
+  flex: 1;
+  font-size: 11px; /* 폰트 크기 줄임 */
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 상세 모드 메트릭 - 기본 모드와 동일한 표 형태 */
+.connection-item .conn-metric {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 10px;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* 기본 모드 호버 툴팁 - 이미지 기반 새로운 디자인 */
+.basic-hover-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: var(--colorBgElevated, #3a3f47);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  width: 240px;
+}
+
+.basic-hover-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #3a3f47;
+}
+
+/* 마우스 추적 툴팁 - 화살표 제거 및 위치 조정 */
+.basic-hover-tooltip-mouse {
+  position: fixed !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+}
+
+.basic-hover-tooltip-mouse::before {
+  display: none; /* 화살표 제거 */
+}
+
+/* Portal 방식 툴팁 - React Flow 외부에 렌더링 */
+.basic-hover-tooltip-portal {
+  position: fixed !important;
+  /* top과 left는 JavaScript에서 인라인으로 설정하므로 제거 */
+  transform: none !important;
+  margin: 0 !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  /* 테마별 배경 */
+  background: var(--colorBgElevated, rgba(30, 36, 45, 0.95)) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: 12px !important; /* 노드와 동일한 border-radius */
+  padding: 16px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  width: 240px !important;
+}
+
+body.lightMode .basic-hover-tooltip-portal {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+.basic-hover-tooltip-portal::before {
+  display: none !important; /* 화살표 완전 제거 */
+}
+
+/* RED 메트릭 섹션 - 컴팩트한 행별 레이아웃 */
+.basic-metrics-section {
+  margin-bottom: 16px;
+}
+
+/* 각 메트릭 행 */
+.basic-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.basic-metric-row:last-child {
+  margin-bottom: 0;
+}
+
+.basic-metric-label {
+  color: var(--colorText, #ffffff);
+  font-weight: 400;
+}
+
+body.lightMode .basic-metric-label {
+  color: #1f1f1f;
+}
+
+.basic-metric-value {
+  color: var(--colorText, #ffffff);
+  font-weight: 700;
+}
+
+body.lightMode .basic-metric-value {
+  color: #1f1f1f;
+}
+
+/* 상대 노드 Top5 섹션 */
+.basic-connections-section {
+  margin-top: 0;
+}
+
+.basic-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+  margin-bottom: 12px;
+}
+
+body.lightMode .basic-section-title {
+  color: #1f1f1f;
+}
+
+/* Top5 테이블 컨테이너 */
+.basic-connections-table {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 테이블 헤더 */
+.basic-table-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #525861;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 11px;
+  color: #a0aec0;
+}
+
+body.lightMode .basic-table-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #6c757d;
+}
+
+.basic-header-rank {
+  width: 36px;
+  text-align: left;
+}
+
+.basic-header-name {
+  flex: 1.2;
+  text-align: center;
+  padding-right: 12px;
+}
+
+.basic-header-reqs {
+  width: 45px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.basic-header-p95 {
+  width: 55px;
+  text-align: center;
+}
+
+/* 테이블 행들 */
+.basic-table-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.basic-table-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.lightMode .basic-table-row:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* 파란색 순위 번호 */
+.basic-rank-number {
+  width: 28px;
+  color: #4299e1; /* 파란색 */
+  font-weight: 700;
+  text-align: left;
+  padding-right: 8px;
+}
+
+/* 서비스 이름 */
+.basic-service-name {
+  flex: 1.2;
+  color: var(--colorText, #ffffff);
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 12px;
+}
+
+body.lightMode .basic-service-name {
+  color: #1f1f1f;
+}
+
+/* Req/s 값 */
+.basic-req-value {
+  width: 45px;
+  color: var(--colorText, #ffffff);
+  font-weight: 600;
+  text-align: right;
+  padding-right: 10px;
+}
+
+body.lightMode .basic-req-value {
+  color: #1f1f1f;
+}
+
+/* p95 값 */
+.basic-p95-value {
+  width: 55px;
+  color: var(--colorText, #ffffff);
+  font-weight: 600;
+  text-align: right;
+}
+
+body.lightMode .basic-p95-value {
+  color: #1f1f1f;
+}

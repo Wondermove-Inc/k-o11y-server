@@ -1,0 +1,662 @@
+/* NetworkHeader 스타일 - SigNoz 상단 헤더 스타일 */
+.network-header {
+  width: 100%;
+  background: #0b0c0e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  position: relative;
+  z-index: 50;
+  display: flex;
+}
+
+body.lightMode .network-header {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  color: #000000;
+}
+
+/* 로딩 표시 - 우상단 */
+.header-loading {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  color: #4fd1c7;
+  font-size: 12px;
+}
+
+.loading-indicator {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* 헤더 컨트롤 영역 - 0004.png 스타일 (고정 위치) */
+.header-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 52px;
+  box-sizing: border-box;
+  width: 241px;
+  border-right: 1px solid rgba(238, 238, 238, 0.10);
+  transition: border-right-color 0.6s ease;
+}
+
+body.lightMode .header-controls {
+  border-right: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.header-controls.no-border {
+  border-right-color: transparent;
+}
+
+/* 헤더 왼쪽 영역 - 필터 토글 */
+.header-left {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 6px;
+}
+
+.header-left > div:nth-child(2) {
+  margin-left: 8px;
+  flex-grow: 1;
+}
+
+.header-left > div:last-child {
+  margin-left: auto;
+}
+
+.filter-toggle-button {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.filter-toggle-button img {
+  filter: brightness(0) invert(1);
+}
+
+body.lightMode .filter-toggle-button {
+  color: #000000;
+}
+
+body.lightMode .filter-toggle-button img {
+  filter: brightness(0) invert(0);
+}
+
+.filter-toggle-button:hover {
+  cursor: pointer;
+}
+
+/* 헤더 전용 Filter 라벨 - 호버 효과 없음 */
+.header-filter-label {
+  font-size: 13px;
+  font-weight: 400;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.90);
+}
+
+body.lightMode .header-filter-label {
+  color: rgba(0, 0, 0, 0.90);
+}
+
+/* 기존 filter-label 유지 (다른 곳에서 사용될 수 있음) */
+.filter-label {
+  font-size: 13px;
+  font-weight: 400;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.90);
+}
+
+body.lightMode .filter-label {
+  color: rgba(0, 0, 0, 0.90);
+}
+
+.filter-refresh-button:active {
+  transform: rotate(180deg);
+}
+
+/* 헤더 오른쪽 영역 - 시간/새로고침 컨트롤 */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* 적당한 간격으로 조정 */
+  flex-wrap: wrap;
+  margin-left: auto; /* 오른쪽으로 밀어내기 */
+}
+
+/* header-right 영역의 모든 img 아이콘을 다크모드에서 흰색으로 */
+.header-right img {
+  filter: brightness(0) invert(1);
+}
+
+body.lightMode .header-right img {
+  filter: brightness(0) invert(0);
+}
+
+/* 캘린더 아이콘은 파란색 유지 (브랜드 컬러) */
+.header-right .calendar-icon {
+  filter: none !important;
+}
+
+/* 컨트롤 그룹 - 헤더용 (0004.png 가로 배치 스타일) */
+.header-controls .control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-direction: row; /* 가로 배치 - 라벨 왼쪽, 컨트롤 오른쪽 */
+}
+
+.header-controls .control-group label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a0aec0;
+  white-space: nowrap;
+  min-width: 70px;
+  flex-shrink: 0; /* 라벨 크기 고정 */
+}
+
+body.lightMode .header-controls .control-group label {
+  color: #718096;
+}
+
+/* 시간 범위 그룹 (0010.png 스타일) */
+.time-range-group {
+  min-width: 160px; /* 너비를 약간 늘려서 자연스럽게 */
+  position: relative;
+  margin-right: 0px; /* 오른쪽 마진 추가로 위치 미세조정 */
+}
+
+/* 시간 범위 패널 컨테이너 */
+.time-range-panel-container {
+  position: relative;
+}
+
+/* 시간 범위 버튼 */
+.time-range-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  min-width: 200px;
+  position: relative;
+}
+
+body.lightMode .time-range-button {
+  color: #000000;
+}
+
+.time-range-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+body.lightMode .time-range-label {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.time-range-divider {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+body.lightMode .time-range-divider {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.time-range-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.time-range-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.lightMode .time-range-text {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  transition: transform 0.2s ease;
+}
+
+.time-range-button.open .dropdown-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/*
+ * Note: .time-range-panel, .custom-datepicker-*, .timezone-*, .preset-option,
+ * .input-group, .clock-icon, .apply-button 등의 스타일은
+ * CustomTimeRange.styles.scss에 정의되어 있습니다.
+ */
+
+/* 드롭다운 컨테이너 */
+.dropdown-container {
+  position: relative;
+}
+
+.network-header .dropdown-button {
+  padding: 4px 12px;
+  border: 1px solid var(--Ink-200, #23262e);
+  border-radius: 4px;
+  background: var(--Ink-200, #23262e);
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+body.lightMode .network-header .dropdown-button {
+  background: #f5f5f5;
+  color: #000000;
+  border: 1px solid #d0d0d0;
+}
+
+.network-header .dropdown-button:hover {
+  background: var(--bg-slate-400, #1d212d);
+  border-color: var(--bg-slate-400, #1d212d);
+}
+
+body.lightMode .network-header .dropdown-button:hover {
+  background: #e8e8e8;
+  border-color: #c0c0c0;
+}
+
+.network-header .dropdown-button.open {
+  border-color: rgba(255, 255, 255, 0.50);
+  background: var(--bg-slate-400, #1d212d);
+}
+
+body.lightMode .network-header .dropdown-button.open {
+  border-color: #4299e1;
+  background: #e8e8e8;
+}
+
+.dropdown-arrow {
+  font-size: 8px;
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.network-header .dropdown-button.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* 드롭다운 메뉴 */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  backdrop-filter: blur(8px);
+}
+
+body.lightMode .dropdown-menu {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+body.lightMode .dropdown-item {
+  color: #000000;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-slate-400, #1d212d);
+}
+
+body.lightMode .dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-item.selected {
+  background: rgba(255, 255, 255, 0.50);
+  color: #ffffff;
+}
+
+body.lightMode .dropdown-item.selected {
+  background: #e8e8e8;
+  color: #000000;
+}
+
+/* 새로고침 시간 표시 - 조회 범위와 동일한 스타일 */
+.last-updated-time-group {
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.last-updated-time-group label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+body.lightMode .last-updated-time-group label {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.last-updated-time-display {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+body.lightMode .last-updated-time-display {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* 자동 새로고침 컨트롤 */
+.auto-refresh-group {
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+}
+
+/* 우선순위를 높인 셀렉터로 간격 조정 */
+.header-controls .auto-refresh-group {
+  gap: 12px; /* 라벨과 컨트롤 사이 간격 조정 */
+}
+
+.auto-refresh-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 7px;
+}
+
+.toggle-button {
+  padding: 4px 10px;
+  border: 1px solid var(--Ink-200, #23262e);
+  border-radius: 3px;
+  background: var(--Ink-200, #23262e);
+  color: #a0aec0;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 35px;
+}
+
+body.lightMode .toggle-button {
+  background: #f5f5f5;
+  color: #718096;
+  border: 1px solid #d0d0d0;
+}
+
+.toggle-button.enabled {
+  background: #125AED;
+  color: #ffffff;
+  border-color: #125AED;
+}
+
+.toggle-button.disabled {
+  background: var(--Ink-200, #23262e);
+  color: #a0aec0;
+  border-color: var(--Ink-200, #23262e);
+}
+
+body.lightMode .toggle-button.disabled {
+  background: #f5f5f5;
+  color: #718096;
+  border-color: #d0d0d0;
+}
+
+.toggle-button:hover {
+  background: #125AED;
+  color: #ffffff;
+  border-color: #125AED;
+}
+
+.toggle-button.enabled:hover {
+   background: var(--Ink-200, #23262e);
+  color: #a0aec0;
+  border-color: var(--Ink-200, #23262e);
+}
+
+body.lightMode .toggle-button.enabled:hover {
+  background: #f5f5f5;
+  color: #718096;
+  border-color: #d0d0d0;
+}
+
+/* 간격 드롭다운 */
+.interval-dropdown {
+  flex: none;
+  min-width: 50px;
+  max-width: 60px;
+}
+
+.network-header .interval-dropdown .dropdown-button {
+  min-width: 50px;
+  max-width: 60px;
+}
+
+/* Groundcover 스타일 새로고침 버튼 (필터 상태 표시 포함) */
+.manual-refresh-group {
+  margin-right: 20px;
+}
+
+.manual-refresh-group .refresh-button {
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  width: 36px;
+}
+.manual-refresh-group .refresh-button img {
+  width: 21px;
+  height: 21px;
+}
+
+.refresh-button:hover {
+ cursor: pointer;
+}
+
+.refresh-button.refreshing {
+  background: var(--bg-slate-400, #1d212d);
+  border-color: var(--bg-slate-400, #1d212d);
+  cursor: not-allowed;
+}
+
+.refresh-icon {
+  font-size: 12px;
+  transition: transform 0.5s ease;
+}
+
+.refresh-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 통계 정보 */
+.stats-group {
+  margin-left: auto;
+}
+
+.stats-info {
+  font-size: 12px;
+  color: #a0aec0;
+  white-space: nowrap;
+}
+
+body.lightMode .stats-info {
+  color: #718096;
+}
+
+/* 반응형 */
+@media (max-width: 1200px) {
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .stats-group {
+    margin-left: 0;
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .header-controls .control-group {
+    justify-content: space-between;
+  }
+  
+  .auto-refresh-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .interval-dropdown {
+    flex: none;
+  }
+}
+
+/* Groundcover 스타일 필터 상태 표시 추가 스타일 */
+.manual-refresh-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 필터 변경사항이 있을 때 새로고침 버튼 스타일 */
+.manual-refresh-group .refresh-button.has-changes {
+  background: #f56565;
+  border-color: #e53e3e;
+  color: #ffffff;
+}
+
+.manual-refresh-group .refresh-button.has-changes:hover:not(:disabled) {
+  background: #e53e3e;
+  border-color: #c53030;
+}
+
+/* 변경사항 배지 */
+.changes-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e53e3e;
+  color: white;
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 16px;
+  text-align: center;
+  border: 2px solid var(--bg-slate-400, #1d212d);
+}
+
+/* 필터 상태 표시 */
+.filter-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  min-height: 20px;
+}
+
+.status-applying {
+  color: #ed8936;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-error {
+  color: #f56565;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-dirty {
+  color: #4fd1c7;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-icon {
+  font-size: 14px;
+}
+
+.status-icon.spinning {
+  animation: spin 1s linear infinite;
+}

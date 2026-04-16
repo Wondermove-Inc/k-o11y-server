@@ -1,0 +1,640 @@
+/* NetworkControls 스타일 - SigNoz 사이드바 스타일 */
+.network-controls {
+  width: 100%;
+  height: 100%;
+  background: #0b0c0e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+body.lightMode .network-controls {
+  background: #ffffff;
+  color: #000000;
+}
+
+
+/* 로딩 표시 - 상단 */
+.controls-loading {
+  padding: 16px;
+  border-bottom: 1px solid var(--Ink-200, #23262e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4fd1c7;
+}
+
+body.lightMode .controls-loading {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.loading-indicator {
+  font-size: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* 메인 컨트롤 영역 */
+.controls-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: opacity 0.3s ease;
+}
+
+
+/* 컨트롤 그룹 - Figma 스타일 (사이드바 전용) */
+.filter-control-group {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.10);
+}
+
+body.lightMode .filter-control-group {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.filter-control-group .accordion-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.filter-control-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+
+.filter-control-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #a0aec0;
+  letter-spacing: 0.5px;
+}
+
+body.lightMode .filter-control-group label {
+  color: #4a5568;
+}
+
+.sub-filter-label{
+  padding: 8px 0;
+}
+
+/* Accordion title and sub-filter text styling for light/dark mode */
+.accordion-title {
+  color: rgba(255, 255, 255, 0.90);
+  font-size: 14px;
+}
+
+body.lightMode .accordion-title {
+  color: rgba(0, 0, 0, 0.90);
+}
+
+/* 아코디언 화살표 아이콘 스타일 */
+.accordion-header img.accordion-arrow-icon {
+  filter: brightness(0) invert(1);
+}
+
+body.lightMode .accordion-header img.accordion-arrow-icon {
+  filter: brightness(0) invert(0);
+}
+
+.sub-filter-text {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 13px;
+}
+
+body.lightMode .sub-filter-text {
+  color: rgba(0, 0, 0, 0.70);
+}
+
+/* 레이아웃 선택 - SigNoz 다크 스타일 */
+.layout-select {
+  padding: 8px 12px;
+  border: 1px solid var(--Ink-200, #23262e);
+  border-radius: 6px;
+  font-size: 13px;
+  background: var(--Ink-200, #23262e);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.lightMode .layout-select {
+  background: #f5f5f5;
+  color: #000000;
+  border: 1px solid #d0d0d0;
+}
+
+.layout-select:focus {
+  outline: none;
+  border-color: #4299e1;
+}
+
+.layout-select:hover {
+  background: var(--bg-slate-400, #1d212d);
+}
+
+body.lightMode .layout-select:hover {
+  background: #e8e8e8;
+}
+
+/* 모드 토글 - Figma 스타일 */
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.mode-toggle button {
+  width: 104px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  color:  rgba(255, 255, 255, 0.90);
+}
+
+body.lightMode .mode-toggle button {
+  color: rgba(0, 0, 0, 0.90);
+}
+
+.mode-toggle button:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+
+body.lightMode .mode-toggle button:hover {
+  color: #000000;
+}
+
+.mode-toggle button.active {
+  background: rgba(83, 139, 255, 0.20);
+  border: 1px solid #125AED;
+}
+
+body.lightMode .mode-toggle button.active {
+  background: rgba(83, 139, 255, 0.15);
+  border: 1px solid #125AED;
+}
+
+.mode-toggle button.inactive {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.lightMode .mode-toggle button.inactive {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+
+/* 빠른 필터 - SigNoz 스타일 */
+.quick-filter {
+  padding: 8px 16px;
+  border: 1px solid var(--Ink-200, #23262e);
+  border-radius: 6px;
+  background: var(--Ink-200, #23262e);
+  color: #a0aec0;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.lightMode .quick-filter {
+  background: #f5f5f5;
+  color: #4a5568;
+  border: 1px solid #d0d0d0;
+}
+
+.quick-filter:hover {
+  background: var(--bg-slate-400, #1d212d);
+  color: #ffffff;
+}
+
+body.lightMode .quick-filter:hover {
+  background: #e8e8e8;
+  color: #000000;
+}
+
+.quick-filter.active {
+  background: #38a169;
+  color: #ffffff;
+  border-color: #38a169;
+}
+
+/* 컨트롤 버튼 */
+.control-button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.control-button:hover {
+  background: #f8f9fa;
+  border-color: #007bff;
+}
+
+.filter-button.active,
+.filter-button:focus {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.refresh-button:hover {
+  background: #00C02A;
+  color: white;
+  border-color: #00C02A;
+}
+
+/* 필터 패널 */
+.filter-panel {
+  position: absolute;
+  top: 100%;
+  right: 16px;
+  width: 320px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+}
+
+.filter-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  color: #666;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+/* 필터 패널 컨텐츠 */
+.filter-panel-content {
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section:last-child {
+  margin-bottom: 0;
+}
+
+.filter-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 120px; /* 180px → 120px로 축소 */
+  overflow-y: auto;
+}
+
+/* 스크롤바 스타일링 - SigNoz 다크 테마 맞춤 */
+.filter-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-options::-webkit-scrollbar-track {
+  background: var(--Ink-200, #23262e);
+  border-radius: 3px;
+}
+
+.filter-options::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.4);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.filter-options::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 136, 136, 0.7);
+}
+
+/* Light mode */
+body.lightMode .filter-options::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.lightMode .filter-options::-webkit-scrollbar-thumb {
+  background: rgba(217, 217, 227, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+body.lightMode .filter-options::-webkit-scrollbar-thumb:hover {
+  background: rgba(236, 236, 241, 1);
+}
+
+/* 워크로드 필터 전용 - 더 큰 영역 */
+.filter-options.workload-filter {
+  max-height: 220px; 
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  position: relative;
+  border: none !important;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-option input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
+  accent-color: #4fd1c7; /* 체크박스 색상 - SigNoz accent color */
+}
+
+/* 사이드바 필터 항목 전용 호버 효과 - 헤더 Filter 텍스트와 분리 */
+.network-controls .filter-label:hover {
+  color: #ffffff;
+  background: rgba(66, 153, 225, 0.1);
+  /* Box Model 속성들은 기본 상태에서 이미 적용되어 있음 - 호버 시 변경하지 않음 */
+}
+
+body.lightMode .network-controls .filter-label:hover {
+  color: #000000;
+  background: rgba(66, 153, 225, 0.1);
+}
+
+
+
+/* 필터 라벨과 카운트 스타일 */
+.filter-label {
+  flex: 1;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  padding: 2px 16px;
+  margin: -2px -4px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+/* Fixed 포지션 필터 툴팁 */
+.filter-tooltip-fixed {
+  position: fixed;
+  background: #1a1a2e;
+  color: #e2e8f0;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: tooltipFadeIn 0.12s ease;
+}
+
+body.lightMode .filter-tooltip-fixed {
+  background: #ffffff;
+  color: #1a202c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+}
+
+@keyframes tooltipFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.filter-count {
+  font-size: 11px; /* 12px → 11px로 축소 */
+  color: #a0aec0;
+  background: var(--Ink-200, #23262e);
+  padding: 1px 4px; /* 2px 6px → 1px 4px로 축소 */
+  border-radius: 8px; /* 10px → 8px로 축소 */
+  min-width: 16px; /* 20px → 16px로 축소 */
+  text-align: center;
+}
+
+body.lightMode .filter-count {
+  color: #4a5568;
+  background: #e8e8e8;
+}
+
+/* Groundcover 스타일 ONLY/ALL 호버 버튼 */
+.filter-only-all-button {
+  position: absolute;
+  right: 6px; /* 8px → 6px로 줄여서 텍스트 공간 확보 */
+  top: 50%;
+  transform: translateY(-50%);
+  background: #4299e1;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 5px; /* 2px 6px → 2px 5px로 살짝 줄임 */
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  /* 최소 너비 보장 */
+  min-width: 30px; /* 32px → 30px로 줄임 */
+  text-align: center;
+}
+
+/* filter-option 전체에 호버할 때 ONLY/ALL 버튼 표시 */
+.filter-option:hover .filter-only-all-button {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filter-option:hover .filter-count {
+  opacity: 0;
+}
+
+.search-box {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #a0aec0;
+}
+
+body.lightMode .search-input::placeholder {
+  color: #718096;
+}
+
+/* 피그마 스타일 - 필터 카운트 */
+.filter-count {
+  font-size: 11px;
+  color: #a0aec0;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+/* 필터 액션 */
+.filter-actions {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+body.lightMode .filter-actions {
+  border-top: 1px solid #d0d0d0;
+}
+
+.reset-filters-button {
+  width: 100%;
+  padding: 8px 16px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reset-filters-button:hover {
+  background: #5a6268;
+}
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .controls-main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .control-group {
+    justify-content: space-between;
+  }
+  
+  .filter-panel {
+    right: 8px;
+    left: 8px;
+    width: auto;
+  }
+  
+  .time-refresh-controls {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .auto-refresh-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .interval-dropdown {
+    flex: none;
+  }
+}
+
+/* ⚡ Layout 선택기 스타일 */
+.layout-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.layout-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.radio-wrapper:hover {
+  background-color: rgba(79, 209, 199, 0.1);
+}
+
+.radio-wrapper input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+  accent-color: #4fd1c7;
+}
+
+.layout-label {
+  font-size: 12px;
+  color: #cbd5e0;
+  font-weight: 500;
+  user-select: none;
+  flex: 1;
+}
+
+body.lightMode .layout-label {
+  color: #4a5568;
+}
+
+.radio-wrapper input[type="radio"]:checked + .layout-label {
+  color: #4fd1c7;
+  font-weight: 600;
+}
+
+body.lightMode .radio-wrapper input[type="radio"]:checked + .layout-label {
+  color: #38b2ac;
+}
+
+/* ELK Layout 특별 스타일 */
+.layout-option:has(input[value="elk"]) .layout-label {
+  background: linear-gradient(135deg, #4fd1c7, #38b2ac);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}

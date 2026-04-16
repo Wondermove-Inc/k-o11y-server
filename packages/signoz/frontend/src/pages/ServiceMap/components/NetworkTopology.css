@@ -1,0 +1,958 @@
+/* NetworkTopology 스타일 - SigNoz 디자인 시스템 */
+.network-topology {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* 세로 배치 - 상단 헤더 + 메인 컨텐츠 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0b0c0e; /* 다크 모드 기본 */
+}
+
+/* 라이트 모드 배경 - body에 lightMode 클래스가 있을 때 */
+body.lightMode .network-topology {
+  background: #ffffff;
+}
+
+/* React Flow 배경색 설정 - 투명하게 하여 background 격자가 보이도록 */
+.react-flow__pane {
+  background: transparent !important;
+}
+
+/* 메인 컨텐츠 영역 */
+.network-content {
+  display: flex;
+  flex-direction: row; /* 가로 배치 - 사이드바 + React Flow */
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 왼쪽 사이드바 - 리사이즈 가능 */
+.network-sidebar {
+  position: relative;
+  width: 240px;
+  min-width: 200px;
+  max-width: 480px;
+  height: 100%;
+  background: #0b0c0e;
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  overflow-y: auto;
+  z-index: 10;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* 사이드바 리사이즈 핸들 */
+.sidebar-resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 20;
+  transition: background-color 0.15s ease;
+}
+
+.sidebar-resize-handle:hover,
+.sidebar-resize-handle:active {
+  background-color: rgba(66, 153, 225, 0.6);
+}
+
+body.lightMode .network-sidebar {
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+/* 사이드바 접혔을 때 - 완전히 숨기기 */
+.network-sidebar.collapsed {
+  width: 0;
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* React Flow 컨테이너 */
+.react-flow-container {
+  flex: 1;
+  position: relative;
+  background: #0b0c0e;
+  transition: margin-right 0.3s ease;
+  min-height: 500px; /* 최소 높이 보장 */
+}
+
+body.lightMode .react-flow-container {
+  background: #ffffff;
+}
+
+/* 상세 패널이 열렸을 때 React Flow 영역 조정 */
+.react-flow-container.with-detail-panel {
+  margin-right: 480px; /* 400px → 480px로 조정 */
+}
+
+@media (max-width: 1200px) {
+  .react-flow-container.with-detail-panel {
+    margin-right: 420px; /* 350px → 420px로 조정 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .react-flow-container.with-detail-panel {
+    margin-right: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .react-flow-container.with-detail-panel {
+    margin-right: 0;
+  }
+}
+
+/* React Flow 커스터마이징 */
+.react-flow {
+  background: #0b0c0e;
+}
+
+body.lightMode .react-flow {
+  background: #ffffff;
+}
+
+/* React Flow 노드 기본 스타일 재정의 */
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__node.selected {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4);
+}
+
+/* React Flow 엣지 기본 스타일 */
+.react-flow__edge {
+  cursor: pointer;
+}
+
+.react-flow__edge.selected path {
+  stroke: #007bff !important;
+  stroke-width: 3px !important;
+}
+
+.react-flow__edge.error path {
+  stroke: #dc3545 !important;
+  stroke-dasharray: none !important; /* 점선 제거하고 실선으로 */
+}
+
+/* 선택된 엣지의 기본 파란색 스타일 오버라이드 */
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #00C02A !important; /* 초록색으로 오버라이드 */
+}
+
+/* 선택된 엣지의 마커(화살표) 색상도 초록색으로 */
+.react-flow__edge.selected path[fill] {
+  fill: #00C02A !important;
+  stroke: #00C02A !important;
+}
+
+/* 에러 엣지가 선택되었을 때는 빨간색 유지 (더 높은 우선순위) */
+.react-flow__edge.error.selected path,
+.react-flow__edge.error.selected .react-flow__edge-path {
+  stroke: #dc3545 !important; /* 에러 엣지 선택시에도 빨간색 유지 */
+}
+
+/* 에러 엣지가 선택되었을 때 화살표도 빨간색 유지 */
+.react-flow__edge.error.selected path[fill],
+.react-flow__edge.error.selected path[stroke] {
+  fill: #dc3545 !important;
+  stroke: #dc3545 !important;
+}
+
+/* React Flow의 모든 선택 상태보다 우선하는 에러 스타일 */
+.react-flow .react-flow__edge.error.selected path {
+  stroke: #dc3545 !important;
+}
+
+.react-flow .react-flow__edge.error.selected path[fill] {
+  fill: #dc3545 !important;
+}
+
+/* g 요소를 통한 에러 엣지 스타일링 (최고 우선순위) - 엣지 패스는 fill 없음 */
+g.error.selected path:not([fill]) {
+  stroke: #dc3545 !important;
+  fill: none !important;
+}
+
+/* 화살표만 fill 적용 */
+g.error.selected path[fill] {
+  fill: #dc3545 !important;
+  stroke: #dc3545 !important;
+}
+
+/* React Flow 엣지 컨테이너를 통한 에러 스타일 */
+.react-flow__edges g.error.selected path:not([fill]) {
+  stroke: #dc3545 !important;
+  fill: none !important;
+}
+
+.react-flow__edges g.error.selected path[fill] {
+  fill: #dc3545 !important;
+  stroke: #dc3545 !important;
+}
+
+.react-flow__controls {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(238, 238, 238, 0.15) !important;
+  backdrop-filter: blur(8px) !important;
+  border-radius: 10px !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  z-index: 50 !important;
+  overflow: hidden !important;
+  padding: 3px !important;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.06) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  width: 26px !important;
+  height: 26px !important;
+  padding: 4px !important;
+  margin: 1px !important;
+  border-radius: 5px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+}
+
+body.lightMode .react-flow__controls-button {
+  color: rgba(0, 0, 0, 0.85) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button:hover {
+  background: rgba(79, 209, 199, 0.15) !important;
+  color: #4fd1c7 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 2px 8px rgba(79, 209, 199, 0.2) !important;
+}
+
+body.lightMode .react-flow__controls-button:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.react-flow__controls-button:active {
+  transform: scale(0.95) !important;
+  background: rgba(79, 209, 199, 0.25) !important;
+}
+
+body.lightMode .react-flow__controls-button:active {
+  background: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* 아이콘 스타일 개선 */
+.react-flow__controls-button svg {
+  width: 14px !important;
+  height: 14px !important;
+  opacity: 0.9 !important;
+  transition: opacity 0.2s ease !important;
+  fill: currentColor !important;
+}
+
+body.lightMode .react-flow__controls-button svg {
+  fill: currentColor !important;
+}
+
+.react-flow__controls-button:hover svg {
+  opacity: 1 !important;
+}
+
+/* React Flow MiniMap 커스터마이징 */
+.react-flow__minimap {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-radius: 4px !important;
+  background: #0b0c0e !important;
+  background-color: #0b0c0e !important;
+}
+
+body.lightMode .react-flow__minimap {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.10) !important;
+}
+
+.react-flow__minimap svg {
+  background: #0b0c0e !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+body.lightMode .react-flow__minimap svg {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.10) !important;
+}
+
+/* React Flow Background */
+.react-flow__background {
+  background-color: #0b0c0e;
+}
+
+body.lightMode .react-flow__background {
+  background-color: #ffffff;
+}
+
+/* 로딩 오버레이 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(11, 12, 14, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(238, 238, 238, 0.1);
+  border-top: 4px solid #4fd1c7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-overlay div:last-child {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 커스텀 엣지 라벨 */
+.custom-edge-label {
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.custom-edge-label:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 네트워크 노드 애니메이션 */
+.react-flow__node-networkNode {
+  transition: all 0.2s ease;
+}
+
+.react-flow__node-networkNode:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .network-topology {
+    height: calc(100vh - 60px); /* 모바일에서 헤더 고려 */
+  }
+  
+  .react-flow__controls {
+    transform: scale(0.8);
+  }
+  
+  .react-flow__minimap {
+    transform: scale(0.8);
+    transform-origin: bottom right;
+  }
+}
+
+/* 다크 테마가 기본이므로 media query 제거 - 0001.png 스타일 적용됨 */
+
+/* 접근성 개선 */
+.react-flow__node:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.react-flow__edge:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .react-flow__node {
+    border: 2px solid #000;
+  }
+  
+  .react-flow__edge path {
+    stroke-width: 3px !important;
+  }
+}
+
+/* 워크로드 상세 패널 - SigNoz 테마별 스타일 */
+.detail-panel {
+  position: absolute;
+  top: 56px; /* 헤더 높이만큼 아래에서 시작 */
+  right: 0;
+  width: 480px; /* 400px → 480px로 확대 */
+  height: calc(100% - 56px); /* 헤더 높이를 제외한 나머지 높이 */
+  background: var(--colorBgContainer, #1d212d); /* 테마별 배경색 */
+  border-left: 1px solid rgba(0, 0, 0, 0.15); /* 테마별 테두리 */
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--colorText, #ffffff); /* 테마별 텍스트 색상 */
+}
+
+body.lightMode .detail-panel {
+  background: #ffffff;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  color: #1f1f1f;
+}
+
+/* 패널 헤더 */
+.detail-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  background: var(--colorBgBase, #0b0c0e);
+}
+
+body.lightMode .detail-panel-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail-panel-title h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+  line-height: 1.3;
+}
+
+body.lightMode .detail-panel-title h3 {
+  color: #1f1f1f;
+}
+
+.detail-panel-subtitle {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #a0aec0; /* K-O11y 스타일 회색 텍스트 */
+  font-weight: 400;
+}
+
+body.lightMode .detail-panel-subtitle {
+  color: #6c757d;
+}
+
+.detail-panel-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #a0aec0; /* K-O11y 스타일 회색 */
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.lightMode .detail-panel-close {
+  color: #6c757d;
+}
+
+.detail-panel-close:hover {
+  background: var(--Ink-200, #23262e); /* SigNoz 호버 배경 */
+  color: #ffffff; /* 호버시 흰색 */
+}
+
+body.lightMode .detail-panel-close:hover {
+  background: #e9ecef;
+  color: #1f1f1f;
+}
+
+/* 패널 컨텐츠 */
+.detail-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  background-color: var(--colorBgBase, #0b0c0e);
+}
+
+body.lightMode .detail-panel-content {
+  background-color: #ffffff;
+}
+
+.detail-section {
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.lightMode .detail-section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.detail-section h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+}
+
+body.lightMode .detail-section h4 {
+  color: #1f1f1f;
+}
+
+/* Overview 그리드 */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.overview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.overview-label {
+  font-size: 12px;
+  color: #a0aec0; /* K-O11y 스타일 회색 라벨 */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.lightMode .overview-label {
+  color: #6c757d;
+}
+
+.overview-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+}
+
+body.lightMode .overview-value {
+  color: #1f1f1f;
+}
+
+.overview-value.status-running {
+  color: #00C02A;
+}
+
+.overview-value.status-pending {
+  color: #ffc107;
+}
+
+.overview-value.status-failed {
+  color: #dc3545;
+}
+
+.overview-value.has-issues {
+  color: #dc3545;
+}
+
+.overview-value.no-issues {
+  color: #00C02A;
+}
+
+/* Metrics 그리드 */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.metric-card {
+  background: var(--colorBgElevated, #23262e);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+body.lightMode .metric-card {
+  background: #f8f9fa;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.metric-value-large {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--colorText, #ffffff);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+body.lightMode .metric-value-large {
+  color: #1f1f1f;
+}
+
+.metric-value-large.error-high {
+  color: #fc8181; /* 더 밝은 빨강 (다크테마용) */
+}
+
+.metric-label {
+  font-size: 12px;
+  color: #a0aec0; /* K-O11y 스타일 회색 라벨 */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.lightMode .metric-label {
+  color: #6c757d;
+}
+
+/* Deployment 그리드 */
+.deployment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.deployment-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deployment-label {
+  font-size: 12px;
+  color: #a0aec0; /* K-O11y 스타일 회색 라벨 */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.deployment-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+}
+
+.deployment-value.warning {
+  color: #fc8181; /* 다크테마용 밝은 빨강 */
+}
+
+/* Stats 그리드 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #a0aec0; /* K-O11y 스타일 회색 라벨 */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+}
+
+.stat-value.error-count {
+  color: #fc8181; /* 다크테마용 밝은 빨강 */
+}
+
+/* 반응형 - 패널 크기 조정 */
+@media (max-width: 1200px) {
+  .detail-panel {
+    width: 420px; /* 350px → 420px로 확대 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .detail-panel {
+    width: 320px;
+  }
+  
+  .overview-grid,
+  .deployment-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 모바일에서는 패널을 오버레이로 */
+@media (max-width: 768px) {
+  .detail-panel {
+    width: 100%;
+    left: 0;
+    right: 0;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+  }
+}
+
+/* 다크 모드는 이제 기본 스타일이므로 별도 미디어 쿼리 불필요 */
+
+/* React Flow 노드 선택 스타일 제거 */
+.react-flow__node.selected,
+.react-flow__node:focus,
+.react-flow__node:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-flow__node.selected .react-flow__node-default,
+.react-flow__node.selected .react-flow__node-input,
+.react-flow__node.selected .react-flow__node-output,
+.react-flow__node.selected [class*="react-flow__node"] {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* 노드 선택 시 기본 스타일 완전 제거 */
+.react-flow__nodes .react-flow__node.selected {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* 포커스 아웃라인 제거 */
+.react-flow__node * {
+  outline: none !important;
+}
+
+/* React Flow attribution 링크 숨기기 */
+.react-flow__attribution {
+  display: none !important;
+}
+
+/* 기존 로딩 스타일 제거됨 - NetworkMapLoader 컴포넌트로 대체 */
+
+/* 에러 상태 */
+.error-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--colorBgBase, #0b0c0e);
+  color: var(--colorText, #e2e8f0);
+}
+
+.error-message {
+  text-align: center;
+  padding: 32px;
+  border-radius: 12px;
+  background: var(--colorBgContainer, #1d212d);
+  border: 1px solid #e53e3e;
+  box-shadow: 0 8px 32px rgba(229, 62, 62, 0.1);
+  max-width: 400px;
+}
+
+.error-message h3 {
+  margin: 0 0 16px 0;
+  color: #e53e3e;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.error-message p {
+  margin: 0 0 20px 0;
+  color: #a0aec0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.retry-button {
+  background: #4f90e2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.retry-button:hover {
+  background: #3b7dd8;
+}
+
+/* 외부 서비스 전용 디테일 패널 스타일 */
+.external-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.external-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.external-info-label {
+  font-size: 12px;
+  color: #a0aec0; /* K-O11y 스타일 회색 라벨 */
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.external-info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+}
+
+.external-info-value.external-service {
+  color: #4f90e2; /* 외부 서비스 식별 컬러 (파란색) */
+}
+
+.external-info-value.external-world {
+  color: #a0aec0; /* 외부 세계 표시용 회색 */
+  font-style: italic;
+}
+
+/* 외부 서비스 연결 정보 스타일 */
+.connection-info {
+  background: var(--colorBgElevated, #23262e);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.connection-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.1);
+}
+
+.connection-item:last-child {
+  border-bottom: none;
+}
+
+.connection-item .external-info-label {
+  margin: 0;
+  font-size: 12px;
+  color: #a0aec0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.connection-item .external-info-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--colorText, #ffffff);
+  margin: 0;
+}
+
+/* 외부 서비스 특별 알림 스타일 */
+.connection-note {
+  background: rgba(79, 144, 226, 0.1); /* 파란색 투명 배경 */
+  border: 1px solid rgba(79, 144, 226, 0.3);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.note-icon {
+  font-size: 16px;
+  color: #4f90e2;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.note-text {
+  font-size: 13px;
+  color: #e2e8f0;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* 외부 서비스 패널 반응형 스타일 */
+@media (max-width: 1200px) {
+  .connection-info {
+    padding: 12px;
+  }
+  
+  .connection-note {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .external-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .connection-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .connection-item .external-info-label,
+  .connection-item .external-info-value {
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .connection-info,
+  .connection-note {
+    margin: 12px;
+  }
+}
