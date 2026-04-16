@@ -49,7 +49,7 @@ func (s *ServiceMapServiceImpl) GetTopology(req *servicemap.TopologyRequest) (*s
 
 	// 토폴로지별 캐시 키 생성 (StartTime/EndTime 기반)
 	timeRange := fmt.Sprintf("%s_%s", req.StartTime, req.EndTime)
-	cacheKey := fmt.Sprintf("topology_%s_%v_%v_%v_%v_%s",
+	cacheKey := fmt.Sprintf("topology_%s_%v_%v_%v_%v",
 		timeRange, req.Cluster, req.Namespace, req.Protocol, req.Status)
 
 	// 캐시에서 조회 시도
@@ -103,7 +103,7 @@ func (s *ServiceMapServiceImpl) GetWorkloadDetails(req *servicemap.WorkloadDetai
 	}
 
 	// 캐시 키 생성 (3-tier 식별자 기반)
-	cacheKey := fmt.Sprintf("workload_details_%s_%s_%s_%s",
+	cacheKey := fmt.Sprintf("workload_details_%s_%s_%s_%s_%s",
 		req.Cluster, req.Namespace, req.WorkloadName, req.StartTime, req.EndTime)
 
 	// 캐시에서 조회 시도
@@ -147,7 +147,7 @@ func (s *ServiceMapServiceImpl) GetWorkloadHover(req *servicemap.WorkloadHoverRe
 
 	// 토폴로지별 캐시 키 생성 (StartTime/EndTime 기반)
 	timeRange := fmt.Sprintf("%s_%s", req.StartTime, req.EndTime)
-	cacheKey := fmt.Sprintf("workload_hover_%s_%v_%v_%v_%v_%s",
+	cacheKey := fmt.Sprintf("workload_hover_%s_%v_%v_%v",
 		timeRange, req.Cluster, req.Namespace, req.WorkloadName)
 
 	// 캐시에서 조회 시도
