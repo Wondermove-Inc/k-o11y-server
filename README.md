@@ -456,12 +456,12 @@ See [NOTICE](NOTICE) for full attribution.
 
 - 🐛 **Bug reports & feature requests**: [GitHub Issues](https://github.com/Wondermove-Inc/k-o11y-server/issues)
 - 💭 **Questions & discussions**: Open an issue (GitHub Discussions coming soon)
-- 🌐 **Website**: [wondermove.net](https://wondermove.net)
+- 🌐 **Website**: [www.skuberplus.com](https://www.skuberplus.com)
 
 ---
 
 <div align="center">
 
-**Built and maintained by [Wondermove](https://wondermove.net)**
+**Built and maintained by [Wondermove](https://www.skuberplus.com)**
 
 </div>

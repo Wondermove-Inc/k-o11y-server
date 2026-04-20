@@ -456,12 +456,12 @@ MIT License — [LICENSE](packages/signoz/LICENSE) 참조
 
 - 🐛 **버그 리포트 & 기능 요청**: [GitHub Issues](https://github.com/Wondermove-Inc/k-o11y-server/issues)
 - 💭 **질문 & 토론**: 이슈로 문의해주세요 (GitHub Discussions은 곧 활성화 예정)
-- 🌐 **웹사이트**: [wondermove.net](https://wondermove.net)
+- 🌐 **웹사이트**: [www.skuberplus.com](https://www.skuberplus.com)
 
 ---
 
 <div align="center">
 
-**[Wondermove](https://wondermove.net)가 개발 및 관리합니다**
+**[Wondermove](https://www.skuberplus.com)가 개발 및 관리합니다**
 
 </div>
