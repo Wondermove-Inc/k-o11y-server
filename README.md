@@ -4,7 +4,7 @@
 
 # K-O11y Server
 
-**K-O11y Server — the backend. SigNoz-based observability platform with ServiceMap, S3 Tiering, and SSO.**
+**K-O11y Server — the backend. Self-hosted observability platform with ServiceMap, S3 Tiering, and SSO.**
 
 [English](README.md) | [한국어](README.ko.md)
 
@@ -13,7 +13,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Wondermove-Inc/k-o11y-server?style=social)](https://github.com/Wondermove-Inc/k-o11y-server/stargazers)
 [![Release](https://img.shields.io/github/v/release/Wondermove-Inc/k-o11y-server?label=release)](https://github.com/Wondermove-Inc/k-o11y-server/releases)
 
-Built on [SigNoz](https://signoz.io/), [ClickHouse](https://clickhouse.com/), and the [OpenTelemetry](https://opentelemetry.io/) ecosystem.
+Built on [ClickHouse](https://clickhouse.com/) and the [OpenTelemetry](https://opentelemetry.io/) ecosystem.
 
 </div>
 
@@ -34,7 +34,7 @@ Built on [SigNoz](https://signoz.io/), [ClickHouse](https://clickhouse.com/), an
 
 ## 🏗️ Architecture
 
-K-O11y Server is a **monorepo backend** composed of two packages: a Go-based `core` API (ServiceMap batch processor, S3 Tiering API) and a SigNoz fork (`packages/signoz`) providing the React frontend and Query Service. Both talk to a shared ClickHouse cluster.
+K-O11y Server is a **monorepo backend** composed of two packages: a Go-based `core` API (ServiceMap batch processor, S3 Tiering API) and the `packages/signoz` directory providing the React frontend and Query Service. Both talk to a shared ClickHouse cluster.
 
 ```mermaid
 flowchart TB
@@ -50,7 +50,7 @@ flowchart TB
             CoreRepo[ClickHouse<br/>Repository]
         end
 
-        subgraph SigNozPkg["packages/signoz (SigNoz fork)"]
+        subgraph SigNozPkg["packages/signoz"]
             Frontend[Frontend UI<br/>React 18 + Ant Design]
             QueryService[Query Service<br/>+ S3 Tiering + SSO]
             Crypto[AES-256-GCM<br/>Crypto Module]
@@ -88,8 +88,8 @@ flowchart TB
 
 1. **Ingest** — OTel Collectors (from Agent clusters) ship telemetry through the OTel Gateway into ClickHouse
 2. **Batch** — `packages/core` runs a periodic ServiceMap batch processor that builds topology data from trace spans
-3. **Query** — `packages/signoz` Query Service serves the SigNoz UI (metrics/logs/traces) and manages SSO + S3 tiering config
-4. **Visualize** — Frontend consumes both Core API (ServiceMap) and SigNoz Query Service (standard o11y views)
+3. **Query** — `packages/signoz` Query Service serves the UI (metrics/logs/traces) and manages SSO + S3 tiering config
+4. **Visualize** — Frontend consumes both Core API (ServiceMap) and the standard Query Service (metrics/logs/traces views)
 
 ### Core Backend Layers
 
@@ -116,7 +116,7 @@ Infrastructure (DB connection management)
 | Tool | Min Version | Purpose |
 |------|-------------|---------|
 | Go | 1.24.0 | Core backend build |
-| Node.js | 16.15.0 | SigNoz frontend build |
+| Node.js | 16.15.0 | Frontend build |
 | Docker | 20.10+ | Image build & push |
 | kubectl | 1.25+ | K8s cluster ops |
 | make | - | Build automation |
@@ -147,7 +147,7 @@ go run cmd/main.go
 All batch settings ship with sensible defaults — no tuning needed to start.
 To disable the ServiceMap batch, set `BATCH_SERVICEMAP_ENABLED=false`.
 
-### Run SigNoz Backend (Community Build)
+### Run Backend (Community Build)
 
 ```bash
 cd packages/signoz
@@ -195,7 +195,7 @@ K-O11y Server is a monorepo with two packages.
 | Package | Role | Tech |
 |---------|------|------|
 | [`packages/core`](packages/core) | ServiceMap API, batch processor, S3 Tiering helpers | Go 1.24 + Gin + ClickHouse |
-| [`packages/signoz`](packages/signoz) | SigNoz fork (React UI + Query Service) | React 18 + Go + Webpack 5 |
+| [`packages/signoz`](packages/signoz) | Backend (React UI + Query Service) | React 18 + Go + Webpack 5 |
 
 ### Project Structure
 
@@ -217,7 +217,7 @@ k-o11y-server/
 │   │   ├── deployments/Dockerfile   # Multi-stage build
 │   │   └── Makefile
 │   │
-│   └── signoz/                      # SigNoz fork (UI + Query Service)
+│   └── signoz/                      # Backend UI + Query Service
 │       ├── frontend/                # React frontend
 │       ├── pkg/                     # Go backend packages
 │       │   ├── crypto/              # AES-256-GCM encryption (S3 creds)
@@ -246,7 +246,7 @@ k-o11y-server/
 | API docs | Swagger (swaggo) | - |
 | Container | distroless/base-debian12 | - |
 
-**SigNoz package**
+**Hub package**
 
 | Category | Tech | Version |
 |----------|------|---------|
@@ -271,7 +271,7 @@ cd packages/core
 docker build -t <your-registry>/observability/core:v1.0.0 -f deployments/Dockerfile .
 docker push <your-registry>/observability/core:v1.0.0
 
-# SigNoz Hub (community build)
+# Hub (community build)
 cd packages/signoz
 make go-build-community
 docker build -t <your-registry>/observability/hub:v1.0.0 -f cmd/community/Dockerfile .
@@ -299,7 +299,7 @@ make core-build-and-push TAG=0.1.3
 # Trigger GitHub Actions workflow
 make trigger-workflow CUSTOM_TAG=v0.1.3
 
-# SigNoz
+# Hub package
 cd packages/signoz
 make o11y-build-and-push TAG=0.1.20
 ```
@@ -323,7 +323,7 @@ Update `values.yaml` image registries to match your registry before installing.
 | Package | Registry path | Base image |
 |---------|---------------|------------|
 | core | `<YOUR_REGISTRY>/observability/core` | distroless/base-debian12 |
-| signoz | `<YOUR_REGISTRY>/observability/hub` | - |
+| hub | `<YOUR_REGISTRY>/observability/hub` | - |
 
 ---
 
@@ -384,7 +384,7 @@ All batch settings have defaults — the server runs fine with none set.
 | `LOG_LEVEL` | `info` | | Log level (debug / info / warn / error) |
 | `LOG_FILE` | `./logs/local-ko11y.log` | | Log file path |
 
-### SigNoz Package (`packages/signoz`)
+### Hub Package (`packages/signoz`)
 
 Env vars are injected via `.env.local`, make CLI args, or shell export.
 See `.env.example` for the full template.
@@ -424,7 +424,7 @@ K-O11y Server is one component of a larger observability platform. See the umbre
 | [k-o11y](https://github.com/Wondermove-Inc/k-o11y) | 🌂 Umbrella — overview, architecture, 6-step install guide |
 | [k-o11y-install](https://github.com/Wondermove-Inc/k-o11y-install) | Helm charts, Go CLI installers, ClickHouse DDL |
 | [k-o11y-otel-collector](https://github.com/Wondermove-Inc/k-o11y-otel-collector) | Custom OTel Collector with CRD processor |
-| [k-o11y-otel-gateway](https://github.com/Wondermove-Inc/k-o11y-otel-gateway) | SigNoz OTel Collector with License Guard |
+| [k-o11y-otel-gateway](https://github.com/Wondermove-Inc/k-o11y-otel-gateway) | OTel Collector with License Guard |
 
 ---
 
@@ -463,7 +463,5 @@ See [NOTICE](NOTICE) for full attribution.
 <div align="center">
 
 **Built and maintained by [Wondermove](https://wondermove.net)**
-
-Based on the incredible work of [SigNoz](https://signoz.io) and the [OpenTelemetry](https://opentelemetry.io) community.
 
 </div>
